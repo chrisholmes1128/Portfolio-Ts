@@ -1,31 +1,55 @@
-import { Drawer } from "@mui/material";
-import React from "react";
+import { Menu, MenuOpenRounded } from "@mui/icons-material";
+import { Box, Collapse, IconButton, List, ListItem, Typography, useTheme } from "@mui/material";
 
 interface IDesktopSidebar {
   open: boolean;
-  children: React.ReactNode;
+  width: string;
+  setOpen: () => void;
 }
 
-const DRAWER_WIDTH = "20rem"
+const ITEMS = ["test 1", "test 2", "test 3", "test 4"];
 
-export default function Sidebar({open, children}: IDesktopSidebar) {
+export default function Sidebar({open, width, setOpen}: IDesktopSidebar) {
+  const theme = useTheme();
+
   return (
-    <Drawer
-      anchor="left"
-      open={open}
-      sx={{
-        width: { xs: 0, sm: open ? DRAWER_WIDTH : 0 },
-        transition: "width 0.5s",
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: { xs: 0, sm: open ? DRAWER_WIDTH : 0 },
-          transition: "width 0.5s",
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
+    <Collapse
+      in={open}
+      orientation="horizontal"
+      sx={{ height: "100%" }}
+      collapsedSize={35}
     >
-      {children}
-    </Drawer>
+      <Box
+        height="100vh"
+        width={width}
+        bgcolor={theme.palette.navy.dark}
+        sx={{
+          borderTopRightRadius: "0.5rem",
+          borderBottomRightRadius: "0.5rem",
+        }}
+      >
+        <Box
+          display="flex"
+          width="100%"
+          justifyContent={open ? "end" : "start"}
+        >
+          <IconButton
+            sx={{ color: theme.palette.common.white }}
+            onClick={setOpen}
+          >
+            {open ? <Menu /> : <MenuOpenRounded />}
+          </IconButton>
+        </Box>
+        {open && ( // Move list into new module 
+          <List>
+            {ITEMS.map((item) => (
+              <ListItem>
+                <Typography color="common.white">{item}</Typography>
+              </ListItem>
+            ))}
+          </List>
+        )}
+      </Box>
+    </Collapse>
   );
 } 
