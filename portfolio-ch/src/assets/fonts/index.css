@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Circular Book";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Circular Std Book"), url("./Circular-Book.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Circular Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Circular Std Medium"),
+    url("./Circular-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Circular Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Circular Std Bold"), url("./Circular-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Circular Black";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Circular Std Black"), url("./Circular-Black.woff") format("woff");
+}
