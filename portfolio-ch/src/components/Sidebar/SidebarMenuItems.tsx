@@ -1,6 +1,7 @@
 import {
   Box,
   Icon,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -8,8 +9,8 @@ import {
   useTheme,
 } from "@mui/material";
 
-import MENU_ITEMS from "../constants/constants";
-
+import { MENU_ITEMS, SOCIAL_MEDIA_ITEMS } from "../constants/constants";
+import React from "react";
 interface ISidebarMenuProps {
   open: boolean;
 }
@@ -21,22 +22,47 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
     console.log(location);
   };
 
+  const handleOpenSocialLink = (link: string) => {
+    window.open(link);
+  };
+
   return (
-    <Box sx={{ marginLeft: !open ? "-1.6rem" : "0px" }}>
-      <List>
-        {MENU_ITEMS.map((item) => (
-          <ListItem key={item.location}>
-            <ListItemButton onClick={() => handleMenuItemClick(item.location)}>
-              <Icon sx={{ color: theme.palette.common.white }}>
-                {item.icon}
-              </Icon>
-              <Typography ml={2} color="common.white" variant="h6">
-                {item.title}
-              </Typography>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+    <React.Fragment>
+      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}>
+        <List>
+          {MENU_ITEMS.map((item) => (
+            <ListItem key={item.location}>
+              <ListItemButton
+                onClick={() => handleMenuItemClick(item.location)}
+              >
+                <Icon sx={{ color: theme.palette.common.white }}>
+                  {item.icon}
+                </Icon>
+                <Typography ml={2} color="common.white" variant="h5">
+                  {item.title}
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px", marginTop: "100%" }}>
+        <Box display="flex" justifyContent="center">
+          <Typography color="common.white">(978) 374-6941</Typography>
+        </Box>
+        <Box display="flex" justifyContent="center">
+          <Typography color="common.white">
+            chrisholmes1128@gmail.com
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="space-evenly" mt={2}>
+          {SOCIAL_MEDIA_ITEMS.map((item) => (
+            <IconButton sx={{ color: theme.palette.common.white }} onClick={() => handleOpenSocialLink(item.link)}>
+              {item.icon}
+            </IconButton>
+          ))}
+        </Box>
+      </Box>
+    </React.Fragment>
   );
 }

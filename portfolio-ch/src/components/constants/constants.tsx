@@ -1,6 +1,6 @@
-import { Devices, Handyman, Person, Quiz, School } from "@mui/icons-material";
+import { Devices, GitHub, Handyman, LinkedIn, Person, Quiz, School } from "@mui/icons-material";
 
-const MENU_ITEMS = [
+export const MENU_ITEMS = [
   {
     title: "Education",
     location: "education",
@@ -28,4 +28,15 @@ const MENU_ITEMS = [
   },
 ];
 
-export default MENU_ITEMS;
+export const SOCIAL_MEDIA_ITEMS = [
+  {
+    title: "Github",
+    link: "https://github.com/chrisholmes1128",
+    icon: <GitHub />,
+  },
+  {
+    title: "LinkedIn",
+    link: "https://www.linkedin.com/in/christopher-holmes-59bb10a9/",
+    icon: <LinkedIn />,
+  },
+];

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
+import PageTitle from "../../components/PageTitle";
 
 function DashboardPage() {
   const [isOpen, setIsOpen] = useState(true);
-  const theme = useTheme();
 
   return (
-    <Box display="flex">
+    <Box display="flex" width="100%">
       <Box>
         <Sidebar
           open={isOpen}
@@ -18,6 +18,7 @@ function DashboardPage() {
       </Box>
       <Box width="100%" ml={2} mr={4}>
         <Header />
+        <PageTitle />
       </Box>
     </Box>
   );

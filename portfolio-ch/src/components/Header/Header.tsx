@@ -23,7 +23,7 @@ export default function Header() {
       alignItems="center"
       padding={2}
     >
-      <Typography variant="h4" color="common.white">
+      <Typography variant="h3" color="common.white">
         Welcome to my Portfolio!
       </Typography>
       <ResumeButton variant="outlined" onClick={() => downloadResume()}>

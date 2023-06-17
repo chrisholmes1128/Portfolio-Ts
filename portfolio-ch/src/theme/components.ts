@@ -15,6 +15,13 @@ const createComponents: Func = () => ({
       },
     },
   },
+  MuiListItem: {
+    styleOverrides: {
+      root: {
+        paddingLeft: "0px"
+      },
+    },
+  },
   MuiListItemButton: {
     styleOverrides: {
       root: {
