@@ -15,6 +15,16 @@ const createComponents: Func = () => ({
       },
     },
   },
+  MuiListItemButton: {
+    styleOverrides: {
+      root: {
+        "&:hover": {
+          border: "1px solid #7de38a",
+          borderRadius: "0.5rem",
+        },
+      },
+    },
+  },
 });
 
 export { createComponents };

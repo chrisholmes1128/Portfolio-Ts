@@ -1,15 +1,14 @@
 import { Menu, MenuOpenRounded } from "@mui/icons-material";
-import { Box, Collapse, IconButton, List, ListItem, Typography, useTheme } from "@mui/material";
+import { Box, Collapse, IconButton, useTheme } from "@mui/material";
+import SidebarMenuItems from "./SidebarMenuItems";
 
-interface IDesktopSidebar {
+interface ISidebar {
   open: boolean;
   width: string;
   setOpen: () => void;
 }
 
-const ITEMS = ["test 1", "test 2", "test 3", "test 4"];
-
-export default function Sidebar({open, width, setOpen}: IDesktopSidebar) {
+export default function Sidebar({open, width, setOpen}: ISidebar) {
   const theme = useTheme();
 
   return (
@@ -40,15 +39,8 @@ export default function Sidebar({open, width, setOpen}: IDesktopSidebar) {
             {open ? <Menu /> : <MenuOpenRounded />}
           </IconButton>
         </Box>
-        {open && ( // Move list into new module 
-          <List>
-            {ITEMS.map((item) => (
-              <ListItem>
-                <Typography color="common.white">{item}</Typography>
-              </ListItem>
-            ))}
-          </List>
-        )}
+  
+        <SidebarMenuItems open={open}/>
       </Box>
     </Collapse>
   );

@@ -21,7 +21,7 @@ const createPalette = (mode: PaletteMode): PaletteOptions => ({
     dark: darken("#26324a", 0.25),
   },
   primary: {
-    main: "#51bd5f",
+    main: "#7de38a",
     light: lighten("#7de38a", 0.1),
     dark: darken("#428f4c", 0.1),
   },
