@@ -4,18 +4,14 @@ import { type ThemeOptions } from "@mui/material/styles";
 type Func = (mode: PaletteMode) => NonNullable<ThemeOptions["components"]>;
 
 const createComponents: Func = () => ({
-  MuiAutocomplete: {
+  MuiIconButton: {
     styleOverrides: {
-      tag: {
-        margin: 0,
-      },
-    },
-  },
-  MuiSpeedDialIcon: {
-    styleOverrides: {
-      icon: {
-        width: 24,
-        height: 24,
+      root: {
+        "&:hover": {
+          color: "#7de38a",
+          transition: "all 0.3s ease-in-out",
+          transform: "scale(1.15)",
+        },
       },
     },
   },
