@@ -13,7 +13,7 @@ export const MENU_ITEMS = [
   },
   {
     title: "Trainings Completed",
-    location: "trainings",
+    location: "training",
     icon: <Quiz />,
   },
   {

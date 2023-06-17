@@ -6,10 +6,9 @@ interface ISidebar {
   open: boolean;
   width: string;
   setOpen: () => void;
-  handleMenuItemClick: (title: string) => void;
 }
 
-export default function Sidebar({open, width, setOpen, handleMenuItemClick}: ISidebar) {
+export default function Sidebar({open, width, setOpen}: ISidebar) {
   const theme = useTheme();
 
   return (
@@ -42,7 +41,6 @@ export default function Sidebar({open, width, setOpen, handleMenuItemClick}: ISi
         </Box>
         <SidebarMenuItems
           open={open}
-          handleMenuItemClick={handleMenuItemClick}
         />
       </Box>
     </Collapse>

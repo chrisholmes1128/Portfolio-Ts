@@ -11,16 +11,21 @@ import {
 
 import { MENU_ITEMS, SOCIAL_MEDIA_ITEMS } from "../constants/constants";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 interface ISidebarMenuProps {
   open: boolean;
-  handleMenuItemClick: (title: string) => void;
 }
 
-export default function SidebarMenuItems({ open, handleMenuItemClick }: ISidebarMenuProps) {
+export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const handleOpenSocialLink = (link: string) => {
     window.open(link);
+  };
+
+  const handleMenuItemClick = (location: string) => {
+    navigate(location);
   };
 
   return (
@@ -30,7 +35,7 @@ export default function SidebarMenuItems({ open, handleMenuItemClick }: ISidebar
           {MENU_ITEMS.map((item) => (
             <ListItem key={item.location}>
               <ListItemButton
-                onClick={() => handleMenuItemClick(item.title)}
+                onClick={() => handleMenuItemClick(item.location)}
               >
                 <Icon sx={{ color: theme.palette.common.white }}>
                   {item.icon}

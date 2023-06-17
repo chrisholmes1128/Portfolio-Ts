@@ -1,18 +1,12 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
-import { styled } from "@mui/material";
+interface IHeaderProps {
+  title: string;
+  children: React.ReactNode;
+}
 
-const ResumeButton = styled(Button)(({ theme }) => ({
-  marginLeft: "auto",
-  color: theme.palette.primary.main,
-}));
-
-export default function Header() {
+export default function Header({title, children}: IHeaderProps) { // add title and children as props
   const theme = useTheme();
-
-  const downloadResume = () => {
-    console.log("download");
-  };
 
   return (
     <Box
@@ -24,11 +18,9 @@ export default function Header() {
       padding={2}
     >
       <Typography variant="h3" color="common.white">
-        Welcome to my Portfolio!
+        {title}
       </Typography>
-      <ResumeButton variant="outlined" onClick={() => downloadResume()}>
-        Resume
-      </ResumeButton>
+      {children}
     </Box>
   );
 }
