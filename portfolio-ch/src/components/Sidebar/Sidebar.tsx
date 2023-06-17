@@ -6,9 +6,10 @@ interface ISidebar {
   open: boolean;
   width: string;
   setOpen: () => void;
+  handleMenuItemClick: (title: string) => void;
 }
 
-export default function Sidebar({open, width, setOpen}: ISidebar) {
+export default function Sidebar({open, width, setOpen, handleMenuItemClick}: ISidebar) {
   const theme = useTheme();
 
   return (
@@ -39,8 +40,10 @@ export default function Sidebar({open, width, setOpen}: ISidebar) {
             {open ? <Menu /> : <MenuOpenRounded />}
           </IconButton>
         </Box>
-  
-        <SidebarMenuItems open={open}/>
+        <SidebarMenuItems
+          open={open}
+          handleMenuItemClick={handleMenuItemClick}
+        />
       </Box>
     </Collapse>
   );

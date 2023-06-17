@@ -13,14 +13,11 @@ import { MENU_ITEMS, SOCIAL_MEDIA_ITEMS } from "../constants/constants";
 import React from "react";
 interface ISidebarMenuProps {
   open: boolean;
+  handleMenuItemClick: (title: string) => void;
 }
 
-export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
+export default function SidebarMenuItems({ open, handleMenuItemClick }: ISidebarMenuProps) {
   const theme = useTheme();
-
-  const handleMenuItemClick = (location: string) => {
-    console.log(location);
-  };
 
   const handleOpenSocialLink = (link: string) => {
     window.open(link);
@@ -33,7 +30,7 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
           {MENU_ITEMS.map((item) => (
             <ListItem key={item.location}>
               <ListItemButton
-                onClick={() => handleMenuItemClick(item.location)}
+                onClick={() => handleMenuItemClick(item.title)}
               >
                 <Icon sx={{ color: theme.palette.common.white }}>
                   {item.icon}
@@ -57,7 +54,11 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
         </Box>
         <Box display="flex" justifyContent="space-evenly" mt={2}>
           {SOCIAL_MEDIA_ITEMS.map((item) => (
-            <IconButton sx={{ color: theme.palette.common.white }} onClick={() => handleOpenSocialLink(item.link)}>
+            <IconButton
+              key={item.link}
+              sx={{ color: theme.palette.common.white }}
+              onClick={() => handleOpenSocialLink(item.link)}
+            >
               {item.icon}
             </IconButton>
           ))}
