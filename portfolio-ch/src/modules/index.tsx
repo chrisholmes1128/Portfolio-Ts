@@ -14,7 +14,7 @@ function Pages() {
       <DashboardPage>
         <Routes>
           <Route element={<AboutPage />} path="/about" />
-          <Route element={<EducationPage />} path="/education" />
+          <Route element={<EducationPage />} path="/experience" />
           <Route element={<ForgotPasswordPage />} path="/forgot" />
           {/* <Route element={<ResetPasswordPage />} path="/reset" /> */}
           <Route element={<PortfolioTechPage />} path="/portfolio" />

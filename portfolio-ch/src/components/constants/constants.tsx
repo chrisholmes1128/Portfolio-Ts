@@ -1,11 +1,6 @@
-import { Devices, GitHub, Handyman, LinkedIn, Person, Quiz, School } from "@mui/icons-material";
+import { Devices, GitHub, Handyman, LinkedIn, Quiz, School } from "@mui/icons-material";
 
 export const MENU_ITEMS = [
-  {
-    title: "Education",
-    location: "education",
-    icon: <School />,
-  },
   {
     title: "Skills",
     location: "skills",
@@ -17,9 +12,9 @@ export const MENU_ITEMS = [
     icon: <Quiz />,
   },
   {
-    title: "About Me",
-    location: "about",
-    icon: <Person />,
+    title: "Experience & Education",
+    location: "experience",
+    icon: <School />,
   },
   {
     title: "Portfolio Application Tech Stack",

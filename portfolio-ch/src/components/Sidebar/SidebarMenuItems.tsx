@@ -12,6 +12,7 @@ import {
 import { MENU_ITEMS, SOCIAL_MEDIA_ITEMS } from "../constants/constants";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { openNewWindow } from "../../utils/openNewWindow";
 interface ISidebarMenuProps {
   open: boolean;
 }
@@ -20,17 +21,13 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const handleOpenSocialLink = (link: string) => {
-    window.open(link);
-  };
-
   const handleMenuItemClick = (location: string) => {
     navigate(location);
   };
 
   return (
     <React.Fragment>
-      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}>
+      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px" }} marginTop={-2}>
         <List>
           {MENU_ITEMS.map((item) => (
             <ListItem key={item.location}>
@@ -48,7 +45,10 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
           ))}
         </List>
       </Box>
-      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px", marginTop: "100%" }}>
+      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px", marginTop: "115%" }}>
+        <Box display="flex" justifyContent="center">
+          <Typography color="common.white">Created by Christopher Holmes</Typography>
+        </Box>
         <Box display="flex" justifyContent="center">
           <Typography color="common.white">(978) 374-6941</Typography>
         </Box>
@@ -62,7 +62,7 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
             <IconButton
               key={item.link}
               sx={{ color: theme.palette.common.white }}
-              onClick={() => handleOpenSocialLink(item.link)}
+              onClick={() => openNewWindow(item.link)}
             >
               {item.icon}
             </IconButton>

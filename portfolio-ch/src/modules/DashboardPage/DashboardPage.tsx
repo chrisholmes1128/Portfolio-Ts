@@ -28,7 +28,7 @@ function DashboardPage({ children }: IDashboardPageProps) {
           setOpen={() => setIsOpen(!isOpen)}
         />
       </Box>
-      <Box width="100%" ml={2} mr={4}>
+      <Box width="100%" ml={2} mr={2}>
         <Header title="Welcome to my Portfolio!">
           <ResumeButton variant="outlined" onClick={() => downloadResume()}>
             Resume

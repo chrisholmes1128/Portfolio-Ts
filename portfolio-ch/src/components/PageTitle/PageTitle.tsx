@@ -7,7 +7,6 @@ export default function PageTitle({title}: {title: string}) {
       justifyContent="start"
       width="100%"
       mt={2}
-      ml={2}
     >
       <Typography variant="h2" color="primary.main">
         {title}

@@ -10,17 +10,17 @@ export default function Header({title, children}: IHeaderProps) { // add title a
 
   return (
     <Box
-      display="flex"
       bgcolor={theme.palette.navy.dark}
       width="100%"
       borderRadius={"0.5rem"}
-      alignItems="center"
-      padding={2}
+      mr={1}
     >
-      <Typography variant="h3" color="common.white">
-        {title}
-      </Typography>
-      {children}
+      <Box display="flex" alignItems="center" justifyContent="center" p={2}>
+        <Typography variant="h3" color="common.white">
+          {title}
+        </Typography>
+        {children}
+      </Box>
     </Box>
   );
 }
