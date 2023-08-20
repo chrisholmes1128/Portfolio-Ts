@@ -2,7 +2,6 @@ import {
   Box,
   useTheme,
 } from "@mui/material";
-import PageTitle from "../../components/PageTitle/PageTitle";
 
 function TrainingsPage() {
   const theme = useTheme();
@@ -15,7 +14,7 @@ function TrainingsPage() {
       mt={2}
       justifyContent="center"
     >
-      <PageTitle title="Training" />
+
     </Box>
   );
 }

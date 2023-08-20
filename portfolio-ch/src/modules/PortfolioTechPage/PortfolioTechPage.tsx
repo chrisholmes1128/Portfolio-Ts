@@ -2,7 +2,6 @@ import {
   Box,
   useTheme,
 } from "@mui/material";
-import PageTitle from "../../components/PageTitle/PageTitle";
 
 function PortfolioTechPage() {
   const theme = useTheme();
@@ -14,7 +13,7 @@ function PortfolioTechPage() {
       mt={2}
       justifyContent="center"
     >
-      <PageTitle title="Application Tech Stack" />
+
     </Box>
   );
 }

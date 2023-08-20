@@ -30,6 +30,7 @@ export default function Sidebar({open, width, setOpen}: ISidebar) {
         <Box
           display="flex"
           width="100%"
+          mb={1}
           justifyContent={open ? "end" : "start"}
         >
           <IconButton

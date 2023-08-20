@@ -14,10 +14,8 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import PageTitle from "../../components/PageTitle/PageTitle";
-import SNHU_LOGO from "../../assets/images/Southern_New_Hampshire_University_seal.png";
-import GRAVOC_LOGO from "../../assets/images/gravoc_logo.png";
-import C2_LOGO from "../../assets/images/c2_logo.png";
+
+import { CSquaredLogo, GravocLogo, SNHULogo } from "../../assets/images";
 import { COURSES } from "../constants";
 import { ExpandMore } from "@mui/icons-material";
 
@@ -55,20 +53,19 @@ function EducationPage() {
   // await getCourses when apollo is added
   return (
     <Box
-      maxHeight="46.5rem"
       mb={2}
-      sx={{ overflowY: "auto" }}
+      bgcolor="background.default"
+      width="100%"
+      height="90vh"
+      sx={{ overflowY: "auto"}}
       borderRadius="0.5rem"
     >
-      <Box display="flex" width="100vh" mt={2}>
-        <PageTitle title="Experience" />
-      </Box>
-      <Box display="flex" justifyContent="center" width="100%">
+      <Box display="flex" justifyContent="center" width="100%" mt={2}>
         <Button
           onClick={() => openNewWindow(GRAVOC_URL)}
           sx={{ height: "4rem" }}
         >
-          <LogoContainer alt="logo" src={GRAVOC_LOGO} />
+          <LogoContainer alt="logo" src={GravocLogo} />
         </Button>
       </Box>
       <Box display="flex" justifyContent="center" width="100%" mt={1}>
@@ -78,11 +75,8 @@ function EducationPage() {
       </Box>
 
       <Box display="flex" justifyContent="center" width="100%" mt={2}>
-        <Button
-          onClick={() => openNewWindow(C2_URL)}
-          sx={{ height: "5rem" }}
-        >
-          <LogoContainerRectangle alt="logo" src={C2_LOGO} />
+        <Button onClick={() => openNewWindow(C2_URL)} sx={{ height: "5rem" }}>
+          <LogoContainerRectangle alt="logo" src={CSquaredLogo} />
         </Button>
       </Box>
       <Box display="flex" justifyContent="center" width="100%" mt={1}>
@@ -91,14 +85,11 @@ function EducationPage() {
         </Typography>
       </Box>
 
-      <Box display="flex" width="100%" mt={2}>
-        <PageTitle title="Education" />
+      <Box display="flex" justifyContent="center" width="100%" mt={3}>
+        <LogoContainer alt="logo" src={SNHULogo} />
       </Box>
       <Box display="flex" justifyContent="center" width="100%" mt={1}>
-        <LogoContainer alt="logo" src={SNHU_LOGO} />
-      </Box>
-      <Box display="flex" justifyContent="center" width="100%" mt={1}>
-        <Typography color="common.white" variant="h5">
+        <Typography color="common.white" variant="h5" mb={2}>
           Bachelor of Science in Computer Science - 2021
         </Typography>
       </Box>

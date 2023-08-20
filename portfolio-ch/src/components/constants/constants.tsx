@@ -7,7 +7,7 @@ export const MENU_ITEMS = [
     icon: <Handyman />,
   },
   {
-    title: "Trainings Completed",
+    title: "Training Completed",
     location: "training",
     icon: <Quiz />,
   },
