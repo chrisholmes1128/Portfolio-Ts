@@ -33,16 +33,16 @@ export default function Sidebar({open, width, setOpen}: ISidebar) {
           mb={1}
           justifyContent={open ? "end" : "start"}
         >
-          <IconButton
-            sx={{ color: theme.palette.common.white }}
-            onClick={setOpen}
-          >
-            {open ? <Menu /> : <MenuOpenRounded />}
-          </IconButton>
+          <Box mr={1} mt={1}>
+            <IconButton
+              sx={{ color: theme.palette.common.white }}
+              onClick={setOpen}
+            >
+              {open ? <Menu /> : <MenuOpenRounded />}
+            </IconButton>
+          </Box>
         </Box>
-        <SidebarMenuItems
-          open={open}
-        />
+        <SidebarMenuItems open={open} />
       </Box>
     </Collapse>
   );

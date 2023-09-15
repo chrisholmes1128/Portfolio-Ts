@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
 import { useLocation } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
+import { RESUME_PDF } from "../constants";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
   marginLeft: "auto",
@@ -22,7 +23,7 @@ function DashboardPage({ children }: IDashboardPageProps) {
 
   useEffect(() => {
     if (location) {
-      console.log(location.pathname)
+      console.log(location.pathname);
       setTitle(capitalizeEveryWord(location.pathname.split("/")[1]));
     }
   }, [location]);
@@ -32,7 +33,7 @@ function DashboardPage({ children }: IDashboardPageProps) {
       <Box>
         <Sidebar
           open={isOpen}
-          width="22rem"
+          width="21rem"
           setOpen={() => setIsOpen(!isOpen)}
         />
       </Box>
@@ -40,11 +41,7 @@ function DashboardPage({ children }: IDashboardPageProps) {
         <Header title={title}>
           <ResumeButton
             variant="outlined"
-            onClick={() =>
-              downloadFile(
-                "./src/assets/files/Christopher_Holmes_Resume_2023.pdf"
-              )
-            }
+            onClick={() => downloadFile(RESUME_PDF)}
           >
             Resume
           </ResumeButton>
