@@ -8,7 +8,7 @@ interface ISidebar {
   setOpen: () => void;
 }
 
-export default function Sidebar({open, width, setOpen}: ISidebar) {
+export default function Sidebar({ open, width, setOpen }: ISidebar) {
   const theme = useTheme();
 
   return (
@@ -34,10 +34,7 @@ export default function Sidebar({open, width, setOpen}: ISidebar) {
           justifyContent={open ? "end" : "start"}
         >
           <Box mr={1} mt={1}>
-            <IconButton
-              sx={{ color: theme.palette.common.white }}
-              onClick={setOpen}
-            >
+            <IconButton onClick={setOpen}>
               {open ? <Menu /> : <MenuOpenRounded />}
             </IconButton>
           </Box>
@@ -46,4 +43,4 @@ export default function Sidebar({open, width, setOpen}: ISidebar) {
       </Box>
     </Collapse>
   );
-} 
+}

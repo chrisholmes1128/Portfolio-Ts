@@ -47,3 +47,27 @@ export const SKILLS = [
     width: "5rem",
   },
 ];
+
+export const INITIAL_JOB_ITEMS = [
+  {
+    id: "1",
+    companyName: "Gravoc",
+    info: "",
+    startDate: new Date("05/16/2022"),
+    endDate: new Date(),
+  },
+  {
+    id: "2",
+    companyName: "C Squared Systems",
+    info: "",
+    startDate: new Date("08/05/2021"),
+    endDate: new Date("05/08/2022"),
+  },
+  {
+    id: "3",
+    companyName: "Blackburn Labs",
+    info: "",
+    startDate: new Date("07/02/2020"),
+    endDate: new Date("07/25/2021"),
+  },
+];

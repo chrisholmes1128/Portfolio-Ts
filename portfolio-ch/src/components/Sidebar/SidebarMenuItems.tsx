@@ -27,7 +27,11 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
 
   return (
     <React.Fragment>
-      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px" }} marginTop={-2} height="82%">
+      <Box
+        sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}
+        marginTop={-2}
+        height="82%"
+      >
         <List>
           {MENU_ITEMS.map((item) => (
             <ListItem key={item.location}>
@@ -45,12 +49,9 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
           ))}
         </List>
       </Box>
-      
-      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px", }}>
-        <Box
-          display="flex"
-          justifyContent="center"
-        >
+
+      <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}>
+        <Box display="flex" justifyContent="center">
           <Typography color="common.white">
             Created by Christopher Holmes
           </Typography>
@@ -67,7 +68,6 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
           {SOCIAL_MEDIA_ITEMS.map((item) => (
             <IconButton
               key={item.link}
-              sx={{ color: theme.palette.common.white }}
               onClick={() => openNewWindow(item.link)}
             >
               {item.icon}

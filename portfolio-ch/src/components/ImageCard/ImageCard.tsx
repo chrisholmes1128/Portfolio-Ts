@@ -1,43 +1,38 @@
-import React from "react";
-import { Box, Button, Modal, Stack, Typography, useTheme } from "@mui/material";
-import { useState } from "react";
-import ModalWrapper from "../ModalWrapper/ModalWrapper";
+import { Box, Button, Typography } from "@mui/material";
 
 interface ICardProps {
   title: string;
   imageSource: string;
   height: string;
   width: string;
-  handleClick?: () => void,
+  handleClick?: () => void;
 }
 
-export default function ImageCard({ title, imageSource, height, width, handleClick }: ICardProps) {
-  // add title and children as props
-  const theme = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function ImageCard({
+  title,
+  imageSource,
+  height,
+  width,
+  handleClick,
+}: ICardProps) {
   return (
     <Box>
-      <Button onClick={() => setIsOpen(!isOpen)} fullWidth>
-        <Box
-          component="img"
-          display="block"
-          src={imageSource}
-          height={height}
-          width={width}
-        />
+      <Box display="flex" justifyContent="center">
+        <Button sx={{ width: "7rem", height: "7rem" }} onClick={handleClick}>
+          <Box
+            component="img"
+            display="block"
+            src={imageSource}
+            height={height}
+            width={width}
+          />
+        </Button>
+      </Box>
+      <Box display="flex" justifyContent="center">
         <Typography variant="h5" color="common.white" mt="1rem">
           {title}
         </Typography>
-      </Button>
-      {isOpen && (
-        <ModalWrapper
-          title={title}
-          onComplete={() => setIsOpen(false)}
-          height="20rem"
-          width="40rem"
-        />
-      )}
+      </Box>
     </Box>
   );
 }

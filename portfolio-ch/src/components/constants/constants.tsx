@@ -1,6 +1,19 @@
-import { Devices, GitHub, Handyman, LinkedIn, Quiz, School } from "@mui/icons-material";
+import {
+  Devices,
+  GitHub,
+  Handyman,
+  LinkedIn,
+  Quiz,
+  School,
+} from "@mui/icons-material";
 
 export const MENU_ITEMS = [
+  // Add Home Welcome Page
+  {
+    title: "Experience",
+    location: "experience",
+    icon: <School />,
+  },
   {
     title: "Skills",
     location: "skills",
@@ -10,11 +23,6 @@ export const MENU_ITEMS = [
     title: "Training Completed",
     location: "training",
     icon: <Quiz />,
-  },
-  {
-    title: "Experience & Education",
-    location: "experience",
-    icon: <School />,
   },
   {
     title: "Portfolio Application Tech Stack",

@@ -1,26 +1,25 @@
-import { Box, Button, Modal, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 
-interface ICardProps {
-  title: string;
-  subText?: string;
-  height: string;
-  width: string;
-  details?: string;
-  readOnly?: boolean;
-  onComplete: () => void;
+interface JobItem {
+  id: string;
+  companyName: string;
+  info: string;
+  startDate: Date;
+  endDate: Date;
 }
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "#26324a",
-  border: "2px solid #000",
-  boxShadow: 24,
-  borderRadius: "0.5rem",
-  p: 2,
-};
+interface IModalProps {
+  title: string;
+  subTitleText?: string;
+  content?: any;
+  confirmBtnText?: string;
+  closeBtnText?: string;
+  readOnly?: boolean;
+  height?: string;
+  width?: string;
+  onComplete: () => void;
+  onSubmit?: () => void;
+}
 
 const actionButtons = {
   position: "absolute",
@@ -32,55 +31,51 @@ const actionButtons = {
 
 export default function ModalWrapper({
   title,
-  subText = "",
-  height = "25rem",
+  subTitleText = "",
+  content,
+  confirmBtnText = "Save",
+  closeBtnText = "Cancel",
+  height = "20rem",
   width = "35rem",
-  details = "",
   readOnly = true,
   onComplete,
-}: ICardProps) {
+  onSubmit,
+}: IModalProps) {
   const theme = useTheme();
 
   return (
-    <Box>
-      <Modal open onClose={onComplete}>
-        <Box width={width} height={height} sx={style}>
-          <Typography variant="h3" color={theme.palette.primary.main}>
-            {title}
-          </Typography>
-          <Typography variant="body2" color={theme.palette.common.white} mt={1}>
-            {subText}
-          </Typography>
-          <Box height="70%" mt={2}>
-            <Typography variant="body1" color={theme.palette.common.white}>
-              {details}
-            </Typography>
-          </Box>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            bottom={0}
-            sx={actionButtons}
+    <Box bgcolor={theme.palette.navy.main} p={2} height={height} width={width}>
+      <Typography variant="h3" color={theme.palette.primary.main}>
+        {title}
+      </Typography>
+      <Typography variant="body2" color={theme.palette.common.white} mt={1}>
+        {subTitleText}
+      </Typography>
+      <Box height="70%" mt={2}>
+        <Typography variant="body1" color={theme.palette.common.white}>
+          {content}
+        </Typography>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        bottom={0}
+        sx={actionButtons}
+      >
+        <Button sx={{ width: "6rem" }} variant="outlined" onClick={onComplete}>
+          {closeBtnText}
+        </Button>
+        {!readOnly && (
+          <Button
+            sx={{ width: "6rem", marginLeft: "1rem" }}
+            variant="contained"
+            onClick={onSubmit}
           >
-            <Button
-              sx={{ width: "6rem" }}
-              variant="outlined"
-              onClick={onComplete}
-            >
-              Close
-            </Button>
-            {!readOnly && (
-              <Button
-                sx={{ width: "6rem", marginLeft: "1rem" }}
-                variant="contained"
-              >
-                Save
-              </Button>
-            )}
-          </Box>
-        </Box>
-      </Modal>
+            {confirmBtnText}
+          </Button>
+        )}
+      </Box>
     </Box>
   );
 }
