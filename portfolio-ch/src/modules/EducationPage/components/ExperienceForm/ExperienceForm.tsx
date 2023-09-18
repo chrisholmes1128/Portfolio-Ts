@@ -4,7 +4,7 @@ import DateInput from "../../../../components/DateInput";
 
 interface JobItem {
   id: string;
-  companyName: string;
+  name: string;
   info: string;
   startDate: Date;
   endDate: Date;
@@ -17,7 +17,7 @@ interface IExperienceFormProps {
 
 const initialValues = {
   id: "",
-  companyName: "",
+  name: "",
   startDate: new Date(),
   endDate: new Date(),
   info: "",
@@ -33,15 +33,17 @@ function ExperienceForm({ inputs, onChange }: IExperienceFormProps) {
     }
   };
 
+  console.log(values.startDate.toISOString(), values.endDate.toISOString());
+
   return (
     <Grid container spacing={2}>
       <Grid item={true} xs={12}>
         <TextField
           fullWidth
-          name="companyName"
+          name="name"
           label="Company Name"
           onChange={(e) => handleChange(e?.target?.name, e?.target?.value)}
-          value={values.companyName}
+          value={values.name}
         />
       </Grid>
       <Grid item={true} xs={6}>

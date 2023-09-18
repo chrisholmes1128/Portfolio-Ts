@@ -2,7 +2,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 
 interface JobItem {
   id: string;
-  companyName: string;
+  name: string;
   info: string;
   startDate: Date;
   endDate: Date;

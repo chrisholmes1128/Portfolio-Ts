@@ -25,7 +25,7 @@ import { ExperienceForm } from "..";
 
 interface JobItem {
   id: string;
-  companyName: string;
+  name: string;
   info: string;
   startDate: Date;
   endDate: Date;
@@ -35,7 +35,7 @@ function ExperienceList() {
   const [items, setItems] = useState<JobItem[]>(INITIAL_JOB_ITEMS);
   const [newItem, setNewItem] = useState<JobItem>({
     id: "1",
-    companyName: "",
+    name: "",
     info: "",
     startDate: new Date(),
     endDate: new Date(),
@@ -114,7 +114,7 @@ function ExperienceList() {
           <List>
             <TransitionGroup>
               {items.map((item: JobItem) => (
-                <Collapse key={item.companyName}>
+                <Collapse key={item.name}>
                   <ListItem
                     secondaryAction={
                       <>
@@ -130,7 +130,7 @@ function ExperienceList() {
                     <ListItemText
                       primary={
                         <Typography color="common.white" variant="h5">
-                          {item.companyName}
+                          {item.name}
                         </Typography>
                       }
                       secondary={
