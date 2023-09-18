@@ -24,7 +24,7 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["src", "./**/*.ts", "graphql", "models"],
+  "include": ["src", "./**/*.ts", "models"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

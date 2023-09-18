@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -18,86 +18,102 @@ import {
 } from "@mui/icons-material";
 
 import { TransitionGroup } from "react-transition-group";
-import { INITIAL_JOB_ITEMS } from "../../../constants";
 import { useGlobalModal } from "../../../../contexts/ModalContext";
-import ModalWrapper from "../../../../components/ModalWrapper";
-import { ExperienceForm } from "..";
+import ExperienceFormModal from "../ExperienceFormModal";
+import { DELETE_COMPANY, GET_COMPANIES } from "../../graphql";
+import { useMutation, useQuery } from "@apollo/client";
+import LoaderSpinner from "../../../../components/LoaderSpinner";
 
 interface JobItem {
   id: string;
   name: string;
   info: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 }
 
 function ExperienceList() {
-  const [items, setItems] = useState<JobItem[]>(INITIAL_JOB_ITEMS);
-  const [newItem, setNewItem] = useState<JobItem>({
-    id: "1",
-    name: "",
-    info: "",
-    startDate: new Date(),
-    endDate: new Date(),
-  });
-
   const { setModalOpen } = useGlobalModal();
   const theme = useTheme();
 
-  const handleSubmit = () => {
-    const itemWithId = {
-      ...newItem,
-      id: String(Number(items[items.length - 1].id) + 4),
-    };
-    setItems([...items, itemWithId]);
-    setModalOpen(false);
+  const { data, loading } = useQuery(GET_COMPANIES);
+  const [deleteCompany] = useMutation(DELETE_COMPANY);
+
+  const [items, setItems] = useState<JobItem[]>([]);
+
+  useEffect(() => {
+    if (data?.getCompanies) {
+      console.log(data);
+      setItems(data?.getCompanies);
+    }
+  }, [data?.getCompanies]);
+
+  const handleRemoveItem = async (id: string) => {
+    await deleteCompany({
+      variables: {
+        id,
+      },
+      refetchQueries: [
+        {
+          query: GET_COMPANIES,
+        },
+      ],
+      awaitRefetchQueries: true,
+    });
   };
 
-  const handleRemoveItem = (id: string) => {
-    setItems((prev) => [...prev.filter((i) => i.id !== id)]);
-  };
-
-  const handleChangeNewItem = (item: JobItem) => {
-    console.log(item);
-    setNewItem(item);
-  };
-
-  const handleAddItem = () => {
+  const handleOpenAddModal = () => {
     setModalOpen(
       true,
-      <ModalWrapper
-        content={<ExperienceForm onChange={handleChangeNewItem} />}
+      <ExperienceFormModal
         readOnly={false}
         title="Add New Company"
         onComplete={() => setModalOpen(false)}
-        onSubmit={handleSubmit}
       />
     );
   };
 
-  const handleUpdateItem = (item: JobItem) => {
+  const handleOpenUpdateModal = (item: JobItem) => {
     setModalOpen(
       true,
-      <ModalWrapper
-        content={
-          <ExperienceForm inputs={item} onChange={handleChangeNewItem} />
-        }
+      <ExperienceFormModal
+        isEditing
         readOnly={false}
         title="Update Company"
+        inputs={item}
         onComplete={() => setModalOpen(false)}
-        onSubmit={handleSubmit}
       />
     );
   };
 
+  const handleOpenReadOnlyModal = (item: JobItem) => {
+    setModalOpen(
+      true,
+      <ExperienceFormModal
+        readOnly
+        title={item.name}
+        inputs={item}
+        onComplete={() => setModalOpen(false)}
+      />
+    );
+  };
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center">
+        <LoaderSpinner />
+      </Box>
+    );
+  }
+
   return (
-    <Box zIndex={1}>
+    <React.Fragment>
       <Box display="flex" justifyContent="center" mt={4} zIndex={1}>
         <Button
           color="primary"
           variant="outlined"
           sx={{ textTransform: "none", zIndex: 1 }}
-          onClick={() => handleAddItem()}
+          onClick={() => handleOpenAddModal()}
         >
           <Typography mr={2}>Add Your Company to the List!</Typography>
           <HappyIcon />
@@ -107,21 +123,21 @@ function ExperienceList() {
       <Box display="flex" justifyContent="center" mt={2}>
         <Box
           bgcolor={theme.palette.navy.dark}
-          width="50%"
+          width="75%"
           p={2}
           borderRadius={2}
         >
           <List>
             <TransitionGroup>
               {items.map((item: JobItem) => (
-                <Collapse key={item.name}>
+                <Collapse key={item?.name}>
                   <ListItem
                     secondaryAction={
                       <>
-                        <IconButton onClick={() => handleUpdateItem(item)}>
+                        <IconButton onClick={() => handleOpenUpdateModal(item)}>
                           <Edit />
                         </IconButton>
-                        <IconButton onClick={() => handleRemoveItem(item.id)}>
+                        <IconButton onClick={() => handleRemoveItem(item?.id)}>
                           <DeleteIcon />
                         </IconButton>
                       </>
@@ -129,16 +145,25 @@ function ExperienceList() {
                   >
                     <ListItemText
                       primary={
-                        <Typography color="common.white" variant="h5">
-                          {item.name}
-                        </Typography>
+                        <Button
+                          color="primary"
+                          sx={{ textTransform: "none" }}
+                          onClick={() => handleOpenReadOnlyModal(item)}
+                        >
+                          <Typography variant="h5">{item?.name}</Typography>
+                        </Button>
                       }
                       secondary={
                         <Typography
+                          ml={1}
                           color={theme.palette.grey[500]}
                           variant="body2"
                         >
-                          {`${item.startDate.toLocaleDateString()} - ${item.endDate.toLocaleDateString()}`}
+                          {`${new Date(
+                            item?.startDate
+                          )?.toLocaleDateString()} - ${new Date(
+                            item?.endDate
+                          )?.toLocaleDateString()}`}
                         </Typography>
                       }
                     />
@@ -149,7 +174,7 @@ function ExperienceList() {
           </List>
         </Box>
       </Box>
-    </Box>
+    </React.Fragment>
   );
 }
 

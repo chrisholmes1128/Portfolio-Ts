@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import ImageCard from "../../components/ImageCard";
 import { SKILLS } from "../constants";
-import ModalWrapper from "../../components/ModalWrapper";
+import ModalWrapper from "../EducationPage/components/ExperienceFormModal";
 import { useGlobalModal } from "../../contexts/ModalContext";
 
 function SkillsPage() {

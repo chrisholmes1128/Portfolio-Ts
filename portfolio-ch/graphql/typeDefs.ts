@@ -2,12 +2,14 @@ import { gql } from "apollo-server";
 import { ObjectId } from "mongoose";
 const typeDefs = gql`
   type Company {
+    id: String!
     name: String!
     startDate: String!
     endDate: String!
     info: String
     updatedAt: String
   }
+
   input CompanyInput {
     name: String
     startDate: String
@@ -15,6 +17,7 @@ const typeDefs = gql`
     info: String
     updatedAt: String
   }
+
   type Query {
     getCompany(ID: ID!): Company!
     getCompanies(amount: Int): [Company]

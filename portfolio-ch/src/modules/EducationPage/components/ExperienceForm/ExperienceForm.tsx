@@ -1,65 +1,55 @@
 import { useState } from "react";
 import { Grid, TextField } from "@mui/material";
 import DateInput from "../../../../components/DateInput";
+import { isValid } from "date-fns";
 
 interface JobItem {
   id: string;
   name: string;
   info: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 }
 
 interface IExperienceFormProps {
-  inputs?: JobItem;
-  onChange: (item: JobItem) => void; // remove this once gql is added
+  inputs: JobItem;
+  readOnly?: boolean;
+  onChange: (name: string, value: string) => void;
 }
 
-const initialValues = {
-  id: "",
-  name: "",
-  startDate: new Date(),
-  endDate: new Date(),
-  info: "",
-};
-
-function ExperienceForm({ inputs, onChange }: IExperienceFormProps) {
-  const [values, setValues] = useState<JobItem>(inputs || initialValues);
-
-  const handleChange = (name: string, value: string | Date) => {
-    if (name) {
-      setValues({ ...values, [name]: value });
-      onChange(values ? { ...values, [name]: value } : initialValues);
-    }
+function ExperienceForm({ readOnly, inputs, onChange }: IExperienceFormProps) {
+  const handleChange = (name: string, value: string) => {
+    onChange(name, value);
   };
 
-  console.log(values.startDate.toISOString(), values.endDate.toISOString());
-
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} mt={2}>
       <Grid item={true} xs={12}>
         <TextField
+          disabled={readOnly}
           fullWidth
           name="name"
           label="Company Name"
           onChange={(e) => handleChange(e?.target?.name, e?.target?.value)}
-          value={values.name}
+          value={inputs.name}
         />
       </Grid>
       <Grid item={true} xs={6}>
         <DateInput
+          disabled={readOnly}
           name="startDate"
           label="Start Date"
           onChange={handleChange}
-          value={values.startDate}
+          value={new Date(inputs.startDate) || null}
         />
       </Grid>
       <Grid item={true} xs={6}>
         <DateInput
+          disabled={readOnly}
           name="endDate"
           label="End Date"
           onChange={handleChange}
-          value={values.endDate}
+          value={new Date(inputs.endDate) || null}
         />
       </Grid>
     </Grid>
