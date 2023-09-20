@@ -9,8 +9,6 @@ import { PortfolioTechPage } from "./PortfolioTechPage";
 import { AboutPage } from "./AboutPage";
 import { HomePage } from "./HomePage";
 
-// check on why resume can't be downloaded on mobile devices..
-
 function Pages() {
   return (
     <Box maxHeight="100vh" overflow="hidden">
