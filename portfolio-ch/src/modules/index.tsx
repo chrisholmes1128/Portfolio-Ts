@@ -7,16 +7,19 @@ import { TrainingsPage } from "./TrainingsPage";
 import { EducationPage } from "./EducationPage";
 import { PortfolioTechPage } from "./PortfolioTechPage";
 import { AboutPage } from "./AboutPage";
+import { HomePage } from "./HomePage";
+
+// check on why resume can't be downloaded on mobile devices..
 
 function Pages() {
   return (
     <Box maxHeight="100vh" overflow="hidden">
       <DashboardPage>
         <Routes>
+          <Route element={<HomePage />} path="/" />
           <Route element={<AboutPage />} path="/about" />
           <Route element={<EducationPage />} path="/experience" />
           <Route element={<ForgotPasswordPage />} path="/forgot" />
-          {/* <Route element={<ResetPasswordPage />} path="/reset" /> */}
           <Route element={<PortfolioTechPage />} path="/portfolio" />
           <Route element={<SkillsPage />} path="/skills" />
           <Route element={<TrainingsPage />} path="/training" />

@@ -14,7 +14,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-   
+    "outDir": "./functions",
+
 
     /* Linting */
     "strict": true,
@@ -24,7 +25,7 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["src", "./**/*.ts", "models"],
-  "exclude": ["node_modules"],
+  "include": ["src", "models"],
+  "exclude": ["node_modules", "functions"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

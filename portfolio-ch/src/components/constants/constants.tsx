@@ -2,13 +2,18 @@ import {
   Devices,
   GitHub,
   Handyman,
+  House,
   LinkedIn,
   Quiz,
   School,
 } from "@mui/icons-material";
 
 export const MENU_ITEMS = [
-  // Add Home Welcome Page
+  {
+    title: "Home",
+    location: "home",
+    icon: <House />,
+  },
   {
     title: "Experience",
     location: "experience",

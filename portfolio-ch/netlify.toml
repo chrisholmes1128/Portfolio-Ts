@@ -1,0 +1,4 @@
+[build]
+publish="site"
+command="yarn build"
+functions="functions"

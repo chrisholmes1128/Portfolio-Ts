@@ -18,13 +18,14 @@ interface IDashboardPageProps {
 
 function DashboardPage({ children }: IDashboardPageProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const [title, setTitle] = useState("Skills");
+  const [title, setTitle] = useState("Home");
   const location = useLocation();
 
   useEffect(() => {
-    if (location) {
-      console.log(location.pathname);
+    if (location.pathname !== "/") {
       setTitle(capitalizeEveryWord(location.pathname.split("/")[1]));
+    } else {
+      setTitle("Home");
     }
   }, [location]);
 
