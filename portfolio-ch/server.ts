@@ -4,9 +4,7 @@ import mongoose from "mongoose";
 import resolvers from "./graphql/resolvers";
 import typeDefs from "./graphql/typeDefs";
 
-const {
-  MONGODB = "mongodb+srv://cholmes:heRbTo7d1KfVfLyU@portfoliodb.tlra5a7.mongodb.net/",
-} = process.env;
+const { MONGODB, PORT } = process.env;
 
 async function startServer() {
   const app = express();
@@ -23,11 +21,13 @@ async function startServer() {
     res.send("Welcome to apollo server!!");
   });
 
-  await mongoose.connect(MONGODB);
+  await mongoose.connect(
+    "mongodb+srv://cholmes:heRbTo7d1KfVfLyU@portfoliodb.tlra5a7.mongodb.net/"
+  );
 
   console.log("Mongoose connected...");
 
-  app.listen(4000, () => console.log("Server is running on port 4000"));
+  app.listen(4000, () => console.log(`Server is running on port ${4000}`));
 }
 
 startServer();
