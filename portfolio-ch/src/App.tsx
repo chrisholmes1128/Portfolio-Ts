@@ -7,7 +7,7 @@ import { GlobalModalProvider } from "./contexts/ModalContext";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://portfolio-api-578e.onrender.com", // "http://localhost:4000/graphql",
+  uri: "https://portfolio-api-578e.onrender.com/graphql", // "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
 
