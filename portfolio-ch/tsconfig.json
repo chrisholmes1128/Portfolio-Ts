@@ -24,7 +24,7 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["src", "./**/*.ts", "models"],
+  "include": ["src", "models"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
