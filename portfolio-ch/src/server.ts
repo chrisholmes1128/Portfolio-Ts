@@ -1,8 +1,8 @@
 const ApolloServer = require("apollo-server").ApolloServer;
 const ApolloServerLambda = require("apollo-server-lambda").ApolloServer;
 const { gql } = require("apollo-server-lambda");
-import resolvers from "../graphql/resolvers";
-import typeDefs from "../graphql/typeDefs";
+import resolvers from "./graphql/resolvers";
+import typeDefs from "./graphql/typeDefs";
 
 export function createLambdaServer() {
   return new ApolloServerLambda({
