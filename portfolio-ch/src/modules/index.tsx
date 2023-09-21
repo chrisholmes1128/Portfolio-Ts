@@ -5,7 +5,6 @@ import { SkillsPage } from "./SkillsPage";
 import DashboardPage from "./DashboardPage";
 import { TrainingsPage } from "./TrainingsPage";
 import { EducationPage } from "./EducationPage";
-import { PortfolioTechPage } from "./PortfolioTechPage";
 import { AboutPage } from "./AboutPage";
 import { HomePage } from "./HomePage";
 
@@ -17,8 +16,6 @@ function Pages() {
           <Route element={<HomePage />} path="/" />
           <Route element={<AboutPage />} path="/about" />
           <Route element={<EducationPage />} path="/experience" />
-          <Route element={<ForgotPasswordPage />} path="/forgot" />
-          <Route element={<PortfolioTechPage />} path="/portfolio" />
           <Route element={<SkillsPage />} path="/skills" />
           <Route element={<TrainingsPage />} path="/training" />
           <Route element={<Navigate to="/" />} path="*" />
