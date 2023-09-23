@@ -29,11 +29,6 @@ export const MENU_ITEMS = [
     location: "training",
     icon: <Quiz />,
   },
-  {
-    title: "Portfolio Application Tech Stack",
-    location: "portfolio",
-    icon: <Devices />,
-  },
 ];
 
 export const SOCIAL_MEDIA_ITEMS = [

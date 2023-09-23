@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  Tooltip,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -15,14 +16,25 @@ import { useNavigate } from "react-router-dom";
 import { openNewWindow } from "../../utils/openNewWindow";
 interface ISidebarMenuProps {
   open: boolean;
+  isMobile: boolean;
+  width?: string;
+  setOpen: () => void;
 }
 
-export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
+export default function SidebarMenuItems({
+  open,
+  isMobile,
+  width,
+  setOpen,
+}: ISidebarMenuProps) {
   const theme = useTheme();
   const navigate = useNavigate();
 
   const handleMenuItemClick = (location: string) => {
     navigate(location);
+    if (isMobile && open) {
+      setOpen();
+    }
   };
 
   return (
@@ -31,20 +43,25 @@ export default function SidebarMenuItems({ open }: ISidebarMenuProps) {
         sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}
         marginTop={-2}
         height="82%"
+        width={open ? width : "4.5rem"}
       >
         <List>
           {MENU_ITEMS.map((item) => (
             <ListItem key={item.location}>
-              <ListItemButton
-                onClick={() => handleMenuItemClick(item.location)}
-              >
-                <Icon sx={{ color: theme.palette.common.white }}>
-                  {item.icon}
-                </Icon>
-                <Typography ml={2} color="common.white" variant="h5">
-                  {item.title}
-                </Typography>
-              </ListItemButton>
+              <Tooltip title={!open && item.title} placement="right">
+                <ListItemButton
+                  onClick={() => handleMenuItemClick(item.location)}
+                >
+                  <Icon sx={{ color: theme.palette.common.white }}>
+                    {item.icon}
+                  </Icon>
+                  {open && (
+                    <Typography ml={2} color="common.white" variant="h5">
+                      {item.title}
+                    </Typography>
+                  )}
+                </ListItemButton>
+              </Tooltip>
             </ListItem>
           ))}
         </List>

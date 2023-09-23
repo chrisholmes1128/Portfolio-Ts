@@ -1,22 +1,10 @@
-import {
-  Box,
-  useTheme,
-} from "@mui/material";
+import { Box, useTheme } from "@mui/material";
+import Page from "../../components/Page";
 
 function TrainingsPage() {
   const theme = useTheme();
   // await getSkills when apollo is added
-  return (
-    <Box
-      width="100%"
-      height="100%"
-      mb={2}
-      mt={2}
-      justifyContent="center"
-    >
-
-    </Box>
-  );
+  return <Page></Page>;
 }
 
 export default TrainingsPage;

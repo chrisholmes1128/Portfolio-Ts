@@ -4,6 +4,7 @@ import {
   MUILogo,
   GraphqlLogo,
   TypescriptLogo,
+  MongoDBLogo,
 } from "../../assets/images";
 
 export const COURSES = [
@@ -37,6 +38,12 @@ export const SKILLS = [
   {
     image: JavascriptLogo,
     title: "Javascript",
+    height: "5rem",
+    width: "5rem",
+  },
+  {
+    image: MongoDBLogo,
+    title: "MongoDB",
     height: "5rem",
     width: "5rem",
   },

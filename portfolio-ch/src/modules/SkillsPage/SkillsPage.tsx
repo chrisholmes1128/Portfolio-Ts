@@ -3,10 +3,14 @@ import ImageCard from "../../components/ImageCard";
 import { SKILLS } from "../constants";
 import ModalWrapper from "../EducationPage/components/ExperienceFormModal";
 import { useGlobalModal } from "../../contexts/ModalContext";
+import Page from "../../components/Page";
+import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
 
 function SkillsPage() {
   const { setModalOpen } = useGlobalModal();
   // await getSkills when apollo is added
+
+  const isMobile = isCurrentDeviceMobile();
 
   const handleOpenModal = (title: string) => {
     setModalOpen(
@@ -16,16 +20,17 @@ function SkillsPage() {
   };
 
   return (
-    <Box width="100%" height="40rem" mt={2}>
+    <Page>
       <Grid
         container
         xs={12}
         display="flex"
         direction="row"
         justifyContent="start"
+        spacing={0}
       >
         {SKILLS.map((skill) => (
-          <Grid item xs={3} mt={6} key={skill.title}>
+          <Grid item xs={isMobile ? 6 : 3} mt={6} key={skill.title}>
             <ImageCard
               title={skill.title}
               imageSource={skill.image}
@@ -36,7 +41,7 @@ function SkillsPage() {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Page>
   );
 }
 

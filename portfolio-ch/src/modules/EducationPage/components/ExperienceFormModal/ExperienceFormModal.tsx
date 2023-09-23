@@ -2,7 +2,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { CREATE_COMPANY, GET_COMPANIES, UPDATE_COMPANY } from "../../graphql";
 import { ExperienceForm } from "..";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { isCurrentDeviceMobile } from "../../../../utils/isCurrentDeviceMobile";
 
 interface JobItem {
   id: string;
@@ -50,7 +51,6 @@ function ExperienceFormModal({
   onComplete,
 }: IModalProps) {
   const [values, setValues] = useState<JobItem>(inputs);
-  console.log(inputs);
 
   const [createCompany] = useMutation(CREATE_COMPANY);
   const [updateCompany] = useMutation(UPDATE_COMPANY);
@@ -124,9 +124,16 @@ function ExperienceFormModal({
   };
 
   const isSubmitDisabled = values?.name?.length < 3;
+  const isMobile = isCurrentDeviceMobile();
 
   return (
-    <Box bgcolor={theme.palette.navy.main} p={2} height="20rem" width="35rem">
+    <Box
+      bgcolor={theme.palette.navy.main}
+      p={2}
+      height={isMobile ? "30rem" : "20rem"}
+      overflow="hidden"
+      width={isMobile ? "90%" : "35rem"}
+    >
       <Typography variant="h3" color={theme.palette.primary.main}>
         {title}
       </Typography>

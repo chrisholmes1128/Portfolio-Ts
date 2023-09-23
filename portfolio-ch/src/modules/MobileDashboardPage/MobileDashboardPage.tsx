@@ -3,10 +3,10 @@ import { Box, Button, styled } from "@mui/material";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
 import { RESUME_PDF } from "../constants";
-import MobileDashboardPage from "../MobileDashboardPage";
+import MobileButtonMenu from "../../components/MobileButtonMenu";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
   marginLeft: "auto",
@@ -15,12 +15,11 @@ const ResumeButton = styled(Button)(({ theme }) => ({
 
 interface IDashboardPageProps {
   children: React.ReactNode;
-  isMobile: boolean;
 }
 
-function DashboardPage({ children, isMobile }: IDashboardPageProps) {
-  const [isOpen, setIsOpen] = useState(true);
+function MobileDashboardPage({ children }: IDashboardPageProps) {
   const [title, setTitle] = useState("Home");
+
   const location = useLocation();
 
   useEffect(() => {
@@ -31,20 +30,9 @@ function DashboardPage({ children, isMobile }: IDashboardPageProps) {
     }
   }, [location]);
 
-  if (isMobile) {
-    return <MobileDashboardPage children={children} />;
-  }
-
   return (
     <Box display="flex" width="100%">
-      <Box>
-        <Sidebar
-          open={isOpen}
-          width="21rem"
-          setOpen={() => setIsOpen(!isOpen)}
-        />
-      </Box>
-      <Box width="100%" ml={2} mr={2}>
+      <Box width="100%">
         <Header title={title}>
           <ResumeButton
             variant="outlined"
@@ -53,10 +41,23 @@ function DashboardPage({ children, isMobile }: IDashboardPageProps) {
             Resume
           </ResumeButton>
         </Header>
-        {children}
+        <Box height="95vh" sx={{ overflowY: "auto" }}>
+          {children}
+        </Box>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        mb={2}
+        mr={1}
+        bottom={0}
+        right={0}
+        position="absolute"
+      >
+        <MobileButtonMenu />
       </Box>
     </Box>
   );
 }
 
-export default DashboardPage;
+export default MobileDashboardPage;

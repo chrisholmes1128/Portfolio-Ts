@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import Page from "../../components/Page";
 
 function HomePage() {
   return (
-    <Box width="100%" height="40rem" mt={2} justifyContent="center">
+    <Page>
       <Typography>Welcome to my Full Stack Portfolio!</Typography>
-    </Box>
+    </Page>
   );
 }
 

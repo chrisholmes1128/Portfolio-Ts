@@ -19,7 +19,7 @@ const createComponents: Func = () => ({
   MuiListItem: {
     styleOverrides: {
       root: {
-        paddingLeft: "0px"
+        paddingLeft: "0px",
       },
     },
   },
@@ -39,30 +39,32 @@ const createComponents: Func = () => ({
     styleOverrides: {
       root: {
         borderRadius: "0.5rem",
-        backgroundColor: `${darken("#26324a", 0.25)}`
-      }
-    }
+        backgroundColor: `${darken("#26324a", 0.25)}`,
+        margin: 1,
+        overflow: "hidden",
+        minWidth: "13rem",
+      },
+    },
   },
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
         color: "grey",
         "&:hover": {
-          borderColor: "red"
+          borderColor: "red",
         },
       },
       notchedOutline: {
         borderColor: "grey",
       },
-      
-    }
+    },
   },
   MuiInputLabel: {
     styleOverrides: {
       root: {
-        color: "grey"
-      }
-    }
+        color: "grey",
+      },
+    },
   },
 });
 

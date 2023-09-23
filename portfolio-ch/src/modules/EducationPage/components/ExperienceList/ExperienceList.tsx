@@ -23,6 +23,7 @@ import ExperienceFormModal from "../ExperienceFormModal";
 import { DELETE_COMPANY, GET_COMPANIES } from "../../graphql";
 import { useMutation, useQuery } from "@apollo/client";
 import LoaderSpinner from "../../../../components/LoaderSpinner";
+import Page from "../../../../components/Page";
 
 interface JobItem {
   id: string;
@@ -100,15 +101,15 @@ function ExperienceList() {
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center">
+      <Page>
         <LoaderSpinner />
-      </Box>
+      </Page>
     );
   }
 
   return (
     <React.Fragment>
-      <Box display="flex" justifyContent="center" mt={4} zIndex={1}>
+      <Box display="flex" justifyContent="center" mt={2} zIndex={1}>
         <Button
           color="primary"
           variant="outlined"
@@ -123,7 +124,7 @@ function ExperienceList() {
       <Box display="flex" justifyContent="center" mt={2}>
         <Box
           bgcolor={theme.palette.navy.dark}
-          width="75%"
+          width="100%"
           p={2}
           borderRadius={2}
         >

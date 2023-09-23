@@ -7,11 +7,14 @@ import { TrainingsPage } from "./TrainingsPage";
 import { EducationPage } from "./EducationPage";
 import { AboutPage } from "./AboutPage";
 import { HomePage } from "./HomePage";
+import { isCurrentDeviceMobile } from "../utils/isCurrentDeviceMobile";
 
 function Pages() {
+  const isMobile = isCurrentDeviceMobile();
+
   return (
     <Box maxHeight="100vh" overflow="hidden">
-      <DashboardPage>
+      <DashboardPage isMobile={isMobile}>
         <Routes>
           <Route element={<HomePage />} path="/" />
           <Route element={<AboutPage />} path="/about" />
