@@ -23,7 +23,7 @@ export const COURSES = [
 ];
 
 export const RESUME_PDF =
-  "./src/assets/files/Christopher_Holmes_Resume_2023.pdf";
+  "/src/assets/files/Christopher_Holmes_Resume_2023.pdf";
 
 export const SKILLS = [
   // add links to websites that opens new window
