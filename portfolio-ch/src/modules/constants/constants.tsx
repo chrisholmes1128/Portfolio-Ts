@@ -53,10 +53,4 @@ export const SKILLS = [
     height: "5rem",
     width: "5rem",
   },
-  {
-    image: MongoDBLogo,
-    title: "MongoDB",
-    height: "5rem",
-    width: "5rem",
-  },
 ];
