@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
 import { useLocation, useNavigate } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
-import { RESUME_PDF } from "../constants";
+import MyResume from "../../../public/Christopher_Holmes_Resume_2023.pdf";
 import MobileButtonMenu from "../../components/MobileButtonMenu";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
@@ -36,7 +36,7 @@ function MobileDashboardPage({ children }: IDashboardPageProps) {
         <Header title={title}>
           <ResumeButton
             variant="outlined"
-            onClick={() => downloadFile(RESUME_PDF)}
+            onClick={() => downloadFile(MyResume)}
           >
             Resume
           </ResumeButton>
