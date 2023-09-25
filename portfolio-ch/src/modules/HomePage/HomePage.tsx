@@ -1,9 +1,8 @@
-import { Box, Button, Grow, Typography, useTheme } from "@mui/material";
-import Page from "../../components/Page";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ArrowForward, ArrowRight } from "@mui/icons-material";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
-import { Ref, useRef } from "react";
+import { useRef } from "react";
 import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
 
 interface IHomePageProps {
