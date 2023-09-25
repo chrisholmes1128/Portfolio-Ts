@@ -21,7 +21,7 @@ const actionButtons = {
 function HomePage({ onEnter }: IHomePageProps) {
   const theme = useTheme();
   const navigate = useNavigate();
-  const ref = useRef<Ref<IParallax> | undefined>();
+  const ref = useRef(null);
 
   const handleNavigate = () => {
     navigate("/experience");
@@ -32,7 +32,6 @@ function HomePage({ onEnter }: IHomePageProps) {
   const fontSize = isMobile ? 50 : 80;
   const marginTop = isMobile ? 10 : 30;
   const alignment = isMobile ? "start" : "center";
-  const buttonAlignment = isMobile ? "center" : "end";
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
