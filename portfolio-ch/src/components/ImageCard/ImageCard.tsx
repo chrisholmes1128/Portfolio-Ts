@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 
 interface ICardProps {
   title: string;
+  info?: string;
   imageSource: string;
   height: string;
   width: string;
@@ -10,15 +11,17 @@ interface ICardProps {
 
 export default function ImageCard({
   title,
+  info,
   imageSource,
   height,
   width,
   handleClick,
 }: ICardProps) {
+  const theme = useTheme();
   return (
     <Box>
       <Box display="flex" justifyContent="center">
-        <Button sx={{ width: "7rem", height: "7rem" }} onClick={handleClick}>
+        <Button sx={{ width: "6rem", height: "6rem" }} onClick={handleClick}>
           <Box
             component="img"
             display="block"
@@ -29,8 +32,17 @@ export default function ImageCard({
         </Button>
       </Box>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h5" color="common.white" mt="1rem">
+        <Typography variant="h5" color="common.white" mt={1}>
           {title}
+        </Typography>
+      </Box>
+      <Box display="flex" justifyContent="center" mt={-1}>
+        <Typography
+          variant="body2"
+          sx={{ color: theme.palette.grey[500] }}
+          mt="1rem"
+        >
+          Experience: {info}
         </Typography>
       </Box>
     </Box>

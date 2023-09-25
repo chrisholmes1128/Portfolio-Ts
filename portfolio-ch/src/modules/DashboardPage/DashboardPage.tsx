@@ -16,24 +16,36 @@ const ResumeButton = styled(Button)(({ theme }) => ({
 interface IDashboardPageProps {
   children: React.ReactNode;
   isMobile: boolean;
+  onExit: () => void;
 }
 
-function DashboardPage({ children, isMobile }: IDashboardPageProps) {
-  const [isOpen, setIsOpen] = useState(true);
-  const [title, setTitle] = useState("Home");
+function DashboardPage({ children, isMobile, onExit }: IDashboardPageProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFirstPageLoad, setIsFirstPageLoad] = useState(true);
+  const [title, setTitle] = useState("Experience");
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname !== "/") {
       setTitle(capitalizeEveryWord(location.pathname.split("/")[1]));
     } else {
-      setTitle("Home");
+      onExit();
     }
   }, [location]);
 
   if (isMobile) {
-    return <MobileDashboardPage children={children} />;
+    return <MobileDashboardPage children={children} onExit={onExit} />;
   }
+
+  useEffect(() => {
+    if (isFirstPageLoad) {
+      const intervalId = setInterval(() => {
+        setIsOpen(true);
+        setIsFirstPageLoad(false);
+      }, 50);
+      return () => clearInterval(intervalId);
+    }
+  }, [isFirstPageLoad]);
 
   return (
     <Box display="flex" width="100%">

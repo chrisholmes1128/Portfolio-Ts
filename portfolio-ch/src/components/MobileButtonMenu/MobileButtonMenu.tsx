@@ -22,20 +22,11 @@ function MobileButtonMenu() {
 
   return (
     <Box mr={1} mt={1}>
-      <IconButton
-        sx={{
-          backgroundColor: `${theme.palette.navy.main} !important`,
-          color: `${theme.palette.common.white} !important`,
-        }}
-        onClick={() => handleToggle()}
-      >
-        {isOpen ? <Close /> : <Menu />}
-      </IconButton>
-
       <Collapse orientation="vertical" in={isOpen}>
         {MENU_ITEMS.map((item) => (
-          <Box mt={2} key={item.title}>
+          <Box mb={2} key={item.title}>
             <IconButton
+              size="large"
               sx={{
                 backgroundColor: `${theme.palette.navy.main} !important`,
                 color: `${theme.palette.common.white} !important`,
@@ -47,6 +38,16 @@ function MobileButtonMenu() {
           </Box>
         ))}
       </Collapse>
+      <IconButton
+        size="large"
+        sx={{
+          backgroundColor: `${theme.palette.navy.main} !important`,
+          color: `${theme.palette.common.white} !important`,
+        }}
+        onClick={() => handleToggle()}
+      >
+        {isOpen ? <Close /> : <Menu />}
+      </IconButton>
     </Box>
   );
 }

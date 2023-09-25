@@ -5,6 +5,10 @@ import {
   GraphqlLogo,
   TypescriptLogo,
   MongoDBLogo,
+  AwsLambdaLogo,
+  AngularLogo,
+  GithubLogo,
+  BitbucketLogo,
 } from "../../assets/images";
 
 export const COURSES = [
@@ -23,31 +27,74 @@ export const COURSES = [
 ];
 
 export const SKILLS = [
-  // add links to websites that opens new window
-  { image: ReactLogo, title: "React", height: "5rem", width: "6rem" },
-  { image: GraphqlLogo, title: "GraphQL", height: "5rem", width: "5rem" },
+  {
+    image: ReactLogo,
+    title: "React",
+    height: "5rem",
+    width: "6rem",
+    experienceInYears: "2.5",
+  },
+  {
+    image: AngularLogo,
+    title: "Angular",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "1",
+  },
+  {
+    image: GraphqlLogo,
+    title: "GraphQL",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "1.5",
+  },
   {
     image: TypescriptLogo,
     title: "Typescript",
     height: "5rem",
     width: "5rem",
+    experienceInYears: "2.5",
   },
   {
     image: JavascriptLogo,
     title: "Javascript",
     height: "5rem",
     width: "5rem",
+    experienceInYears: "3",
   },
   {
     image: MongoDBLogo,
     title: "MongoDB",
     height: "5rem",
     width: "5rem",
+    experienceInYears: "2.5",
+  },
+  {
+    image: AwsLambdaLogo,
+    title: "AWS Lambda",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "1",
   },
   {
     image: MUILogo,
     title: "Material UI",
     height: "5rem",
     width: "5rem",
+    experienceInYears: "3.5",
+  },
+  {
+    image: GithubLogo,
+    title: "Github",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "3.5",
+  },
+  {
+    image: BitbucketLogo,
+    title: "Bitbucket",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "3.5",
   },
 ];

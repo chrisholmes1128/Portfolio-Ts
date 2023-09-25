@@ -1,23 +1,22 @@
 import {
-  Devices,
+  ArrowBack,
   GitHub,
   Handyman,
-  House,
   LinkedIn,
-  Quiz,
   School,
+  Work,
 } from "@mui/icons-material";
 
 export const MENU_ITEMS = [
   {
     title: "Home",
     location: "home",
-    icon: <House />,
+    icon: <ArrowBack />,
   },
   {
     title: "Experience",
     location: "experience",
-    icon: <School />,
+    icon: <Work />,
   },
   {
     title: "Skills",
@@ -27,14 +26,14 @@ export const MENU_ITEMS = [
   {
     title: "Training Completed",
     location: "training",
-    icon: <Quiz />,
+    icon: <School />,
   },
 ];
 
 export const SOCIAL_MEDIA_ITEMS = [
   {
     title: "Github",
-    link: "https://github.com/chrisholmes1128",
+    link: "https://github.com/chrisholmes1128/Portfolio-Ts",
     icon: <GitHub />,
   },
   {

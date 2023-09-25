@@ -15,10 +15,11 @@ const ResumeButton = styled(Button)(({ theme }) => ({
 
 interface IDashboardPageProps {
   children: React.ReactNode;
+  onExit: () => void;
 }
 
-function MobileDashboardPage({ children }: IDashboardPageProps) {
-  const [title, setTitle] = useState("Home");
+function MobileDashboardPage({ children, onExit }: IDashboardPageProps) {
+  const [title, setTitle] = useState("Experience");
 
   const location = useLocation();
 
@@ -26,7 +27,7 @@ function MobileDashboardPage({ children }: IDashboardPageProps) {
     if (location.pathname !== "/") {
       setTitle(capitalizeEveryWord(location.pathname.split("/")[1]));
     } else {
-      setTitle("Home");
+      onExit();
     }
   }, [location]);
 
@@ -41,7 +42,7 @@ function MobileDashboardPage({ children }: IDashboardPageProps) {
             Resume
           </ResumeButton>
         </Header>
-        <Box height="95vh" sx={{ overflowY: "auto" }}>
+        <Box height="100%" sx={{ overflowY: "auto" }}>
           {children}
         </Box>
       </Box>
@@ -49,10 +50,10 @@ function MobileDashboardPage({ children }: IDashboardPageProps) {
         display="flex"
         justifyContent="center"
         mb={2}
-        mr={1}
+        // mr={1}
         bottom={0}
         right={0}
-        position="absolute"
+        position="fixed"
       >
         <MobileButtonMenu />
       </Box>
