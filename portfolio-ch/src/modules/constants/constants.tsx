@@ -9,6 +9,7 @@ import {
   AngularLogo,
   GithubLogo,
   BitbucketLogo,
+  NodeJsLogo,
 } from "../../assets/images";
 
 export const COURSES = [
@@ -50,17 +51,24 @@ export const SKILLS = [
   },
   {
     image: TypescriptLogo,
-    title: "Typescript",
+    title: "TypeScript",
     height: "5rem",
     width: "5rem",
     experienceInYears: "2.5",
   },
   {
     image: JavascriptLogo,
-    title: "Javascript",
+    title: "JavaScript",
     height: "5rem",
     width: "5rem",
     experienceInYears: "3",
+  },
+  {
+    image: NodeJsLogo,
+    title: "Node.js",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "2",
   },
   {
     image: MongoDBLogo,

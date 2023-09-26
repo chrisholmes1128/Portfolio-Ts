@@ -8,3 +8,6 @@ export { default as AwsLambdaLogo } from "./aws_lambda.png";
 export { default as AngularLogo } from "./angular_logo.png";
 export { default as BitbucketLogo } from "./bitbucket_logo.jpg";
 export { default as GithubLogo } from "./github_logo.png";
+export { default as fullBgImage } from "./full-mountain-image.png";
+export { default as bottomBgImage } from "./bottom-mountains.png";
+export { default as NodeJsLogo } from "./node_js_logo.jpg";

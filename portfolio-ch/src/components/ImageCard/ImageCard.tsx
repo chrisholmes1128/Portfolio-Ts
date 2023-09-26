@@ -36,15 +36,17 @@ export default function ImageCard({
           {title}
         </Typography>
       </Box>
-      <Box display="flex" justifyContent="center" mt={-1}>
-        <Typography
-          variant="body2"
-          sx={{ color: theme.palette.grey[500] }}
-          mt="1rem"
-        >
-          Experience: {info}
-        </Typography>
-      </Box>
+      {info && (
+        <Box display="flex" justifyContent="center" mt={-1}>
+          <Typography
+            variant="body2"
+            sx={{ color: theme.palette.grey[500] }}
+            mt="1rem"
+          >
+            Experience: {info}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 }
