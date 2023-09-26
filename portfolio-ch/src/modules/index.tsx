@@ -4,7 +4,7 @@ import ForgotPasswordPage from "./ForgotPasswordPage/ForgotPasswordPage";
 import { SkillsPage } from "./SkillsPage";
 import DashboardPage from "./DashboardPage";
 import { TrainingsPage } from "./TrainingsPage";
-import { EducationPage } from "./EducationPage";
+import { ExperiencePage } from "./ExperiencePage";
 import { HomePage } from "./HomePage";
 import { isCurrentDeviceMobile } from "../utils/isCurrentDeviceMobile";
 import { useState } from "react";
@@ -28,7 +28,7 @@ function Pages() {
       ) : (
         <DashboardPage isMobile={isMobile} onExit={handleEnterPortfolio}>
           <Routes>
-            <Route element={<EducationPage />} path="/experience" />
+            <Route element={<ExperiencePage />} path="/experience" />
             <Route element={<SkillsPage />} path="/skills" />
             <Route element={<TrainingsPage />} path="/training" />
             <Route element={<Navigate to="/" />} path="*" />

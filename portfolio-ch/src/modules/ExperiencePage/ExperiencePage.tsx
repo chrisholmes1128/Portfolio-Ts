@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
 import { ExperienceList } from "./components";
 
-function EducationPage() {
-  // await getCourses when apollo is added
+function ExperiencePage() {
   return (
     <Box
       mb={2}
@@ -17,4 +16,4 @@ function EducationPage() {
   );
 }
 
-export default EducationPage;
+export default ExperiencePage;
