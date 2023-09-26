@@ -1,6 +1,4 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { ArrowForward } from "@mui/icons-material";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { useRef } from "react";
 import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
@@ -19,6 +17,7 @@ function HomePage({ onEnter }: IHomePageProps) {
   const fontSize = isMobile ? 50 : 80;
   const marginTop = isMobile ? 8 : 25;
   const alignment = isMobile ? "start" : "center";
+  const gridTemplateColumns = isMobile ? "1fr" : "1fr 1fr 1fr";
 
   const frontendSkills = SKILLS.filter(
     (skill) =>
@@ -33,7 +32,7 @@ function HomePage({ onEnter }: IHomePageProps) {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Parallax pages={4} ref={ref}>
+      <Parallax pages={isMobile ? 2.4 : 1.2} ref={ref}>
         <ParallaxLayer speed={2} style={{ zIndex: 15 }}>
           <Box display="flex" justifyContent={alignment} mt={marginTop} ml={2}>
             <Typography fontSize={fontSize} color="common.white">
@@ -67,8 +66,14 @@ function HomePage({ onEnter }: IHomePageProps) {
           <HomePageButton onEnter={onEnter} />
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={0.5}>
-          <Grid container gridTemplateColumns="1fr 1fr 1fr" spacing={4} p={2}>
+          <Grid
+            container
+            gridTemplateColumns={gridTemplateColumns}
+            spacing={4}
+            p={2}
+          >
             <HomePageColumn
+              isMobile={isMobile}
               title="Front End Technologies"
               items={frontendSkills}
               info="To provide a modern and reliable application, this web app
@@ -84,6 +89,7 @@ function HomePage({ onEnter }: IHomePageProps) {
                     before deploying any updates."
             />
             <HomePageColumn
+              isMobile={isMobile}
               title="GraphQL"
               items={graphQLSkill}
               info="I choose to use GraphQL in my Portfolio to demonstrate the
@@ -99,7 +105,8 @@ function HomePage({ onEnter }: IHomePageProps) {
               data!"
             />
             <HomePageColumn
-              title="Front End Technologies"
+              isMobile={isMobile}
+              title="Back End Technologies"
               items={backendSkills}
               info="This web application uses Node.js with Express to help
               manage the Apollo Server which in turn allows for data to be

@@ -1,7 +1,5 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import ImageCard from "../../../../components/ImageCard";
-import { isCurrentDeviceMobile } from "../../../../utils/isCurrentDeviceMobile";
-import HomePageColumnMobile from "../HomePageColumnMobile";
 
 interface Item {
   image: any;
@@ -11,47 +9,41 @@ interface Item {
   experienceInYears: string;
 }
 
-interface IHomePageColumnProps {
+interface IHomePageColumnMobileProps {
   title: string;
   items: Item[];
   info?: string;
-  isMobile: boolean;
 }
 
-function HomePageColumn({
+function HomePageColumnMobile({
   title,
   info,
   items,
-  isMobile,
-}: IHomePageColumnProps) {
+}: IHomePageColumnMobileProps) {
   const theme = useTheme();
 
-  if (isMobile) {
-    return <HomePageColumnMobile title={title} info={info} items={items} />;
-  }
+  const isFirstItem = title === "Front End Technologies";
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12}>
       <Box
         display="flex"
         justifyContent="center"
-        alignItems="center"
-        height="5rem"
         width="100%"
-        mt={40}
+        mt={isFirstItem ? 30 : 6}
       >
-        <Typography color="common.white" fontSize={50} fontWeight={500}>
+        <Typography color="common.white" fontSize={33} fontWeight={500}>
           {title}
         </Typography>
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
         {items.map((item) => (
-          <Box ml={4} mr={4} key={item.title}>
+          <Box ml={1} mr={1} key={item.title}>
             <ImageCard
               title={item.title}
               imageSource={item.image}
-              height={item.height}
-              width={item.width}
+              height="4rem"
+              width="4rem"
             />
           </Box>
         ))}
@@ -62,9 +54,8 @@ function HomePageColumn({
           p={2}
           borderRadius={2}
           width="100%"
-          height="36rem"
         >
-          <Typography color="common.white" variant="h3" lineHeight={2}>
+          <Typography color="common.white" variant="h4" lineHeight={1.25}>
             {info}
           </Typography>
         </Box>
@@ -73,4 +64,4 @@ function HomePageColumn({
   );
 }
 
-export default HomePageColumn;
+export default HomePageColumnMobile;
