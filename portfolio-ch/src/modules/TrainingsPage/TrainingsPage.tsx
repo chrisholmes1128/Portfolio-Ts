@@ -8,10 +8,13 @@ import {
   TypeScriptCertificate,
   SQLCertificate,
 } from "../../assets/images";
+import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
 
 function TrainingsPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [activeImage, setActiveImage] = useState(AWSCloudCertificate);
+
+  const isMobile = isCurrentDeviceMobile();
 
   useEffect(() => {
     if (activeStep === 0) {
@@ -24,6 +27,9 @@ function TrainingsPage() {
       setActiveImage(SQLCertificate);
     }
   }, [activeStep]);
+
+  const imageHeight = isMobile ? "18rem" : "38rem";
+  const imageWidth = isMobile ? "99%" : "54rem";
 
   return (
     <Page>
@@ -40,11 +46,12 @@ function TrainingsPage() {
             sx={{
               background: `url(${activeImage})`,
               backgroundSize: "cover",
-              width: "54rem",
-              height: "38rem",
+              width: imageWidth,
+              height: imageHeight,
             }}
           />
         }
+        width={isMobile ? "20rem" : "50rem"}
         steps={[
           "AWS Cloud Practioner",
           "PluralSight TypeScript",
