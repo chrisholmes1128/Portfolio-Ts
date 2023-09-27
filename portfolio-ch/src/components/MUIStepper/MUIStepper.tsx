@@ -7,47 +7,47 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { AWSCloudCertificate } from "../../assets/images";
+
 import Stepper from "@mui/material/Stepper";
 
 interface IStepperProps {
+  activeStep: number;
+  children?: React.ReactNode;
+  setActiveStep: (value: number) => void;
   steps: string[];
   width?: string;
 }
 
-function MUIStepper({ steps, width = "50rem" }: IStepperProps) {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
+function MUIStepper({
+  activeStep,
+  setActiveStep,
+  children,
+  steps,
+  width = "50rem",
+}: IStepperProps) {
   const [completed, setCompleted] = useState<{
     [k: number]: boolean;
   }>({});
 
+  const theme = useTheme();
+
   const totalSteps = () => {
     return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
   };
 
   const isLastStep = () => {
     return activeStep === totalSteps() - 1;
   };
 
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
-
   const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
+    const newActiveStep = isLastStep()
+      ? steps.findIndex((step, i) => !(i in completed))
+      : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(activeStep - 1);
   };
 
   const handleStep = (step: number) => () => {
@@ -62,19 +62,7 @@ function MUIStepper({ steps, width = "50rem" }: IStepperProps) {
         </Typography>
       </Box>
 
-      <Box
-        display="flex"
-        justifyContent="center"
-        ml="auto"
-        mr="auto"
-        mb={4}
-        sx={{
-          background: `url(${AWSCloudCertificate})`,
-          backgroundSize: "cover",
-          width: "54rem",
-          height: "38rem",
-        }}
-      />
+      {children}
 
       <Stepper
         nonLinear
@@ -87,17 +75,10 @@ function MUIStepper({ steps, width = "50rem" }: IStepperProps) {
       >
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
-            <StepButton color="inherit" onClick={handleStep(index)}>
-              <Typography
-                color={
-                  index === activeStep
-                    ? theme.palette.common.white
-                    : theme.palette.navy.dark
-                }
-              >
-                {label}
-              </Typography>
-            </StepButton>
+            <StepButton
+              color="inherit"
+              onClick={handleStep(index)}
+            ></StepButton>
           </Step>
         ))}
       </Stepper>

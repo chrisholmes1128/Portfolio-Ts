@@ -12,3 +12,6 @@ export { default as fullBgImage } from "./full-mountain-image.png";
 export { default as bottomBgImage } from "./bottom-mountains.png";
 export { default as NodeJsLogo } from "./node_js_logo.jpg";
 export { default as AWSCloudCertificate } from "./AWS_Cloud_Practitioner_Certificate.png";
+export { default as SQLCertificate } from "./SQL_Certificate.png";
+export { default as TypeScriptCertificate } from "./TypeScript_Intro_Certificate.png";
+export { default as DynamoDBLogo } from "./dynamodb_logo.png";

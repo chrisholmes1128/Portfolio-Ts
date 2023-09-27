@@ -22,7 +22,7 @@ function SkillsPage() {
           <Grid item xs={isMobile ? 6 : 3} mt={6} key={skill.title}>
             <ImageCard
               title={skill.title}
-              info={`${skill.experienceInYears} Years`}
+              info={`${skill.experienceInYears} Year(s)`}
               imageSource={skill.image}
               height={skill.height}
               width={skill.width}

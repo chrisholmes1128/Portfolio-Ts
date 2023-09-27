@@ -10,6 +10,7 @@ import {
   GithubLogo,
   BitbucketLogo,
   NodeJsLogo,
+  DynamoDBLogo,
 } from "../../assets/images";
 
 export const COURSES = [
@@ -76,6 +77,13 @@ export const SKILLS = [
     height: "5rem",
     width: "5rem",
     experienceInYears: "2.5",
+  },
+  {
+    image: DynamoDBLogo,
+    title: "DynamoDB",
+    height: "5rem",
+    width: "5rem",
+    experienceInYears: "1.5",
   },
   {
     image: AwsLambdaLogo,
