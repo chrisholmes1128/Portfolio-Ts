@@ -56,11 +56,26 @@ function MUIStepper({
 
   return (
     <React.Fragment>
-      <Box display="flex" justifyContent="center" mb={2}>
-        <Typography color={theme.palette.common.white}>
-          {steps[activeStep]}
-        </Typography>
+      <Box display="flex" justifyContent="center" mt={2}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Button
+            variant="contained"
+            color="inherit"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            sx={{ mr: 1 }}
+          >
+            Back
+          </Button>
+          <Typography color={theme.palette.common.white} mr={2} ml={2}>
+            {steps[activeStep]}
+          </Typography>
+          <Button variant="contained" onClick={handleNext} sx={{ mr: 1 }}>
+            Next
+          </Button>
+        </Box>
       </Box>
+      <Box display="flex" justifyContent="center" mb={2}></Box>
 
       {children}
 
@@ -82,23 +97,6 @@ function MUIStepper({
           </Step>
         ))}
       </Stepper>
-
-      <Box display="flex" justifyContent="center" mt={2}>
-        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-          <Button
-            color="inherit"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-          >
-            Back
-          </Button>
-          <Box sx={{ flex: "1 1 auto" }} />
-          <Button onClick={handleNext} sx={{ mr: 1 }}>
-            Next
-          </Button>
-        </Box>
-      </Box>
     </React.Fragment>
   );
 }

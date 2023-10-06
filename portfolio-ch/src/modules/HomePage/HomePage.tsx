@@ -1,8 +1,8 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid, Grow, Typography, useTheme } from "@mui/material";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { useRef } from "react";
 import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
-import { fullBgImage, bottomBgImage } from "../../assets/images";
+import { fullBgImage, bottomBgImage, ProfilePic } from "../../assets/images";
 import { SKILLS } from "../constants";
 import { HomePageButton, HomePageColumn } from "./components";
 
@@ -12,10 +12,10 @@ interface IHomePageProps {
 
 function HomePage({ onEnter }: IHomePageProps) {
   const ref = useRef(null);
-
+  const theme = useTheme();
   const isMobile = isCurrentDeviceMobile();
   const fontSize = isMobile ? 50 : 80;
-  const marginTop = isMobile ? 8 : 25;
+  const marginTop = isMobile ? 3.5 : 22;
   const alignment = isMobile ? "start" : "center";
   const gridTemplateColumns = isMobile ? "1fr" : "1fr 1fr 1fr";
 
@@ -32,16 +32,19 @@ function HomePage({ onEnter }: IHomePageProps) {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Parallax pages={isMobile ? 2.4 : 1.2} ref={ref}>
+      <Parallax pages={isMobile ? 3.3 : 2} ref={ref}>
         <ParallaxLayer speed={2} style={{ zIndex: 15 }}>
           <Box display="flex" justifyContent={alignment} mt={marginTop} ml={2}>
-            <Typography fontSize={fontSize} color="common.white">
-              Welcome To My Portfolio
-            </Typography>
+            <Grow in={true} {...{ timeout: 1000 }}>
+              <Typography fontSize={fontSize} color="common.white">
+                Welcome To My Portfolio
+              </Typography>
+            </Grow>
           </Box>
           <Box display="flex" justifyContent={alignment} ml={2}>
-            <Typography fontSize={25} color="common.white">
-              Scroll down to learn more
+            <Typography textAlign="center" fontSize={25} color="common.white">
+              Scroll down to learn more or click the button below to checkout my
+              Dashboard!
             </Typography>
           </Box>
         </ParallaxLayer>
@@ -65,18 +68,77 @@ function HomePage({ onEnter }: IHomePageProps) {
         >
           <HomePageButton onEnter={onEnter} />
         </ParallaxLayer>
-        <ParallaxLayer offset={0} speed={0.5}>
-          <Grid
-            container
-            gridTemplateColumns={gridTemplateColumns}
-            spacing={4}
-            p={2}
-          >
-            <HomePageColumn
-              isMobile={isMobile}
-              title="Front End Technologies"
-              items={frontendSkills}
-              info="To provide a modern and reliable application, this web app
+        <ParallaxLayer offset={0.5} speed={0.5}>
+          <Box bgcolor={theme.palette.navy.dark} p={1} pb={10}>
+            <Box display="flex" justifyContent="center">
+              <Box
+                sx={{
+                  background: `url(${ProfilePic})`,
+                  backgroundSize: "cover",
+                  width: "18rem",
+                  height: "18rem",
+                  borderRadius: "10rem",
+                  border: `2px solid white`,
+                  marginTop: "-8rem",
+                  zIndex: 5,
+                }}
+              />
+              <Box
+                bgcolor={theme.palette.navy.dark}
+                width="20rem"
+                height="20rem"
+                marginTop="-9rem"
+                position="absolute"
+                sx={{ zIndex: 0, borderRadius: "10rem" }}
+              />
+            </Box>
+            <Box display="flex" justifyContent="center" mt={2}>
+              <Typography color="primary" fontSize={30}>
+                Christopher Holmes
+              </Typography>
+            </Box>
+            <Box display="flex" justifyContent="center" mt={1}>
+              <Typography color="common.white" fontSize={24}>
+                Full Stack Developer
+              </Typography>
+            </Box>
+
+            <Box display="flex" justifyContent="center" width="100%">
+              <Box mt={2} width="70%">
+                <Typography
+                  textAlign="center"
+                  color="common.white"
+                  fontSize={18}
+                >
+                  Thanks for taking the time to checkout my portfolio! I am a
+                  passionate Full Stack Developer with a focus on front end
+                  design who can also employ backend changes as well. At my
+                  current job, I am exposed to an abundance of different
+                  projects which in turn allowed me to gain invaluable
+                  experience with the most desirable web solutions.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1} speed={0.5}>
+          <Box bgcolor={theme.palette.navy.dark} p={1}>
+            <Box display="flex" justifyContent="center">
+              <Typography textAlign="center" color="primary" fontSize={40}>
+                Portfolio Application Stack
+              </Typography>
+            </Box>
+            <Grid
+              container
+              gridTemplateColumns={gridTemplateColumns}
+              spacing={4}
+              p={2}
+            >
+              <HomePageColumn
+                isMobile={isMobile}
+                title="Front End Technologies"
+                items={frontendSkills} // move text to constants file !!!
+                info="To provide a modern and reliable application, this web app
                     utilizes React along with TypeScript. In order to keep
                     client side code clean and bug free, reusable components
                     were created and tested. This includes reusable inputs which
@@ -87,12 +149,12 @@ function HomePage({ onEnter }: IHomePageProps) {
                     support the web app which helps reduce overall complexity
                     and the amount of time it takes to build the application
                     before deploying any updates."
-            />
-            <HomePageColumn
-              isMobile={isMobile}
-              title="GraphQL"
-              items={graphQLSkill}
-              info="I choose to use GraphQL in my Portfolio to demonstrate the
+              />
+              <HomePageColumn
+                isMobile={isMobile}
+                title="GraphQL"
+                items={graphQLSkill}
+                info="I choose to use GraphQL in my Portfolio to demonstrate the
               power of this query language. This requires a litle more
               time up front for initial setup, however the advantages of
               this modern query run time engine make it worth it! Some of
@@ -103,18 +165,19 @@ function HomePage({ onEnter }: IHomePageProps) {
               fetching which will only return the data fields you ask for.
               In other words, this means no more over or under fetching
               data!"
-            />
-            <HomePageColumn
-              isMobile={isMobile}
-              title="Back End Technologies"
-              items={backendSkills}
-              info="This web application uses Node.js with Express to help
+              />
+              <HomePageColumn
+                isMobile={isMobile}
+                title="Back End Technologies"
+                items={backendSkills}
+                info="This web application uses Node.js with Express to help
               manage the Apollo Server which in turn allows for data to be
               created, read, updated, or deleted from MongoDB. Note: the requests may seem slow at first
               due to the initial spin up speed of free tier offered by Render 
               which hosts my custom API."
-            />
-          </Grid>
+              />
+            </Grid>
+          </Box>
         </ParallaxLayer>
       </Parallax>
     </div>

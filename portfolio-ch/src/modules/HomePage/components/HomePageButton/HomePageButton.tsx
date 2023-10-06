@@ -27,6 +27,7 @@ function HomePageButton({ onEnter }: IHomePageButtonProps) {
       justifyContent="center"
       alignItems="center"
       bottom={0}
+      width="100%"
       sx={actionButtons}
     >
       <Button

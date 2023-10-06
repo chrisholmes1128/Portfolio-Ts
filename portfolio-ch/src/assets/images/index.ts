@@ -15,3 +15,4 @@ export { default as AWSCloudCertificate } from "./AWS_Cloud_Practitioner_Certifi
 export { default as SQLCertificate } from "./SQL_Certificate.png";
 export { default as TypeScriptCertificate } from "./TypeScript_Intro_Certificate.png";
 export { default as DynamoDBLogo } from "./dynamodb_logo.png";
+export { default as ProfilePic } from "./profile_pic.jpg";

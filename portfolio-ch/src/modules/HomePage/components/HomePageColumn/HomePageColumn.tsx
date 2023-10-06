@@ -1,6 +1,5 @@
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import ImageCard from "../../../../components/ImageCard";
-import { isCurrentDeviceMobile } from "../../../../utils/isCurrentDeviceMobile";
 import HomePageColumnMobile from "../HomePageColumnMobile";
 
 interface Item {
@@ -24,8 +23,6 @@ function HomePageColumn({
   items,
   isMobile,
 }: IHomePageColumnProps) {
-  const theme = useTheme();
-
   if (isMobile) {
     return <HomePageColumnMobile title={title} info={info} items={items} />;
   }
@@ -38,13 +35,12 @@ function HomePageColumn({
         alignItems="center"
         height="5rem"
         width="100%"
-        mt={40}
       >
-        <Typography color="common.white" fontSize={50} fontWeight={500}>
+        <Typography color="common.white" fontSize={28} fontWeight={500}>
           {title}
         </Typography>
       </Box>
-      <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
+      <Box display="flex" justifyContent="center" alignItems="center">
         {items.map((item) => (
           <Box ml={4} mr={4} key={item.title}>
             <ImageCard
@@ -56,15 +52,14 @@ function HomePageColumn({
           </Box>
         ))}
       </Box>
-      <Box display="flex" justifyContent="center" mt={2}>
-        <Box
-          border={`2px solid ${theme.palette.common.white}`}
-          p={2}
-          borderRadius={2}
-          width="100%"
-          height="36rem"
-        >
-          <Typography color="common.white" variant="h3" lineHeight={2}>
+      <Box display="flex" height="100%" justifyContent="center" mt={2}>
+        <Box display="flex" p={2} borderRadius={2}>
+          <Typography
+            color="common.white"
+            textAlign="center"
+            variant="h4"
+            lineHeight={2}
+          >
             {info}
           </Typography>
         </Box>

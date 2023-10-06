@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import ImageCard from "../../../../components/ImageCard";
 
 interface Item {
@@ -20,19 +20,10 @@ function HomePageColumnMobile({
   info,
   items,
 }: IHomePageColumnMobileProps) {
-  const theme = useTheme();
-
-  const isFirstItem = title === "Front End Technologies";
-
   return (
     <Grid item xs={12}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        width="100%"
-        mt={isFirstItem ? 30 : 6}
-      >
-        <Typography color="common.white" fontSize={33} fontWeight={500}>
+      <Box display="flex" justifyContent="center" width="100%" mt={5}>
+        <Typography color="common.white" fontSize={32} fontWeight={500}>
           {title}
         </Typography>
       </Box>
@@ -49,13 +40,13 @@ function HomePageColumnMobile({
         ))}
       </Box>
       <Box display="flex" justifyContent="center" mt={2}>
-        <Box
-          border={`2px solid ${theme.palette.common.white}`}
-          p={2}
-          borderRadius={2}
-          width="100%"
-        >
-          <Typography color="common.white" variant="h4" lineHeight={1.25}>
+        <Box p={2} borderRadius={2} width="100%">
+          <Typography
+            color="common.white"
+            textAlign="center"
+            variant="h4"
+            lineHeight={1.25}
+          >
             {info}
           </Typography>
         </Box>

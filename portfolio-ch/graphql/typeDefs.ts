@@ -1,5 +1,5 @@
 import { gql } from "apollo-server";
-import { ObjectId } from "mongoose";
+
 const typeDefs = gql`
   type Company {
     id: String!

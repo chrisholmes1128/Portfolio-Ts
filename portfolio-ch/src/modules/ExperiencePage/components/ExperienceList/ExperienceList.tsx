@@ -11,11 +11,7 @@ import {
   ListItem,
 } from "@mui/material";
 
-import {
-  Delete as DeleteIcon,
-  Edit,
-  SentimentSatisfiedOutlined as HappyIcon,
-} from "@mui/icons-material";
+import { Add, Delete as DeleteIcon, Edit } from "@mui/icons-material";
 
 import { TransitionGroup } from "react-transition-group";
 import { useGlobalModal } from "../../../../contexts/ModalContext";
@@ -109,18 +105,6 @@ function ExperienceList() {
 
   return (
     <React.Fragment>
-      <Box display="flex" justifyContent="center" mt={2} zIndex={1}>
-        <Button
-          color="primary"
-          variant="outlined"
-          sx={{ textTransform: "none", zIndex: 1 }}
-          onClick={() => handleOpenAddModal()}
-        >
-          <Typography mr={2}>Add Your Company to the List!</Typography>
-          <HappyIcon />
-        </Button>
-      </Box>
-
       <Box display="flex" justifyContent="center" mt={2}>
         <Box
           bgcolor={theme.palette.navy.dark}
@@ -128,6 +112,11 @@ function ExperienceList() {
           p={2}
           borderRadius={2}
         >
+          <Box display="flex" justifyContent="end">
+            <IconButton onClick={() => handleOpenAddModal()}>
+              <Add />
+            </IconButton>
+          </Box>
           <List>
             <TransitionGroup>
               {items.map((item: JobItem) => (

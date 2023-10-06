@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { CREATE_COMPANY, GET_COMPANIES, UPDATE_COMPANY } from "../../graphql";
 import { ExperienceForm } from "..";
@@ -57,8 +57,6 @@ function ExperienceFormModal({
 
   const theme = useTheme();
 
-  const isAdding = !!inputs?.name.length;
-
   const handleSubmit = async () => {
     const { id, name, startDate, endDate, info } = values;
     console.log(id);
@@ -67,7 +65,6 @@ function ExperienceFormModal({
       try {
         await updateCompany({
           variables: {
-            // need to add id ..
             id,
             companyInput: {
               name,

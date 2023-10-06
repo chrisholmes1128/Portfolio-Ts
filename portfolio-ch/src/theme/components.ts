@@ -50,9 +50,6 @@ const createComponents: Func = () => ({
     styleOverrides: {
       root: {
         color: "grey",
-        "&:hover": {
-          borderColor: "red",
-        },
       },
       notchedOutline: {
         borderColor: "grey",
@@ -63,6 +60,20 @@ const createComponents: Func = () => ({
     styleOverrides: {
       root: {
         color: "grey",
+      },
+    },
+  },
+  MuiPickersDay: {
+    styleOverrides: {
+      root: {
+        color: "white",
+      },
+    },
+  },
+  MuiPickersFadeTransitionGroup: {
+    styleOverrides: {
+      root: {
+        color: "white",
       },
     },
   },

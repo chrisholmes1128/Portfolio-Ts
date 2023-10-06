@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
 import MyResume from "../../../public/Christopher_Holmes_Resume_2023.pdf";
 import MobileDashboardPage from "../MobileDashboardPage";
+import SuccessToast from "../../components/SuccessToast";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
   marginLeft: "auto",
@@ -49,6 +50,7 @@ function DashboardPage({ children, isMobile, onExit }: IDashboardPageProps) {
 
   return (
     <Box display="flex" width="100%">
+      {/* <SuccessToast text="Welcome to the Dashboard!" /> */}
       <Box>
         <Sidebar
           open={isOpen}

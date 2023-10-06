@@ -1,9 +1,7 @@
 import { Box } from "@mui/material";
-import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
 
 function Page({ children }: any) {
-  const isMobile = isCurrentDeviceMobile();
-  const height = isMobile ? window.innerHeight - 100 : "100%";
+  const height = "calc(100vh - 100px)";
 
   return (
     <Box

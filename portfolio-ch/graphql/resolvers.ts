@@ -49,20 +49,6 @@ const resolvers = {
       return isUpdated;
     },
   },
-
-  // async updateCompany(
-  //   _: any,
-  //   { ID, companyInput: { name, startDate, endDate, info } }: any
-  // ) {
-  //   const isUpdated = (
-  //     await Company.updateOne(
-  //       { id: ID },
-  //       { name: name, startDate: startDate, endDate: endDate, info: info }
-  //     )
-  //   ).modifiedCount;
-  //   // 1 = updated, 0 = not updated
-  //   return isUpdated;
-  // },
 };
 
 export default resolvers;
