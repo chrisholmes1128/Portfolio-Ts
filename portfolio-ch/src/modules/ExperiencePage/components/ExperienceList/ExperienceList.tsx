@@ -11,7 +11,7 @@ import {
   ListItem,
 } from "@mui/material";
 
-import { Add, Delete as DeleteIcon, Edit } from "@mui/icons-material";
+import { Add, Delete as DeleteIcon, Edit, Sort } from "@mui/icons-material";
 
 import { TransitionGroup } from "react-transition-group";
 import { useGlobalModal } from "../../../../contexts/ModalContext";
@@ -21,6 +21,10 @@ import { useQuery } from "@apollo/client";
 import LoaderSpinner from "../../../../components/LoaderSpinner";
 import Page from "../../../../components/Page";
 import ExperienceFormDeleteModal from "../ExperienceFormDeleteModal";
+import {
+  useErrorNotification,
+  useSuccessNotification,
+} from "../../../../utils/notifications";
 
 interface JobItem {
   id: string;
@@ -40,17 +44,29 @@ function ExperienceList() {
 
   useEffect(() => {
     if (data?.getCompanies) {
-      console.log(data);
       setCompanies(data?.getCompanies);
     }
   }, [data?.getCompanies]);
+
+  const handleComplete = (action: string, status: string) => {
+    setModalOpen(false);
+
+    if (status === "success") {
+      useSuccessNotification(`Successfully ${action} Company`);
+    } else {
+      useErrorNotification(
+        `Company was unable to be ${action}. Please contact support.`
+      );
+    }
+  };
 
   const handleOpenDeleteModal = (companyId: string) => {
     setModalOpen(
       true,
       <ExperienceFormDeleteModal
         companyId={companyId}
-        onComplete={() => setModalOpen(false)}
+        onClose={() => setModalOpen(false)}
+        onSubmit={handleComplete}
       />
     );
   };
@@ -61,7 +77,8 @@ function ExperienceList() {
       <ExperienceFormModal
         readOnly={false}
         title="Add New Company"
-        onComplete={() => setModalOpen(false)}
+        onClose={() => setModalOpen(false)}
+        onSubmit={handleComplete}
       />
     );
   };
@@ -74,7 +91,8 @@ function ExperienceList() {
         readOnly={false}
         title="Update A Company"
         inputs={company}
-        onComplete={() => setModalOpen(false)}
+        onClose={() => setModalOpen(false)}
+        onSubmit={handleComplete}
       />
     );
   };
@@ -86,7 +104,7 @@ function ExperienceList() {
         readOnly
         title={company.name}
         inputs={company}
-        onComplete={() => setModalOpen(false)}
+        onClose={() => setModalOpen(false)}
       />
     );
   };
@@ -109,6 +127,9 @@ function ExperienceList() {
           borderRadius={2}
         >
           <Box display="flex" justifyContent="end">
+            <IconButton onClick={() => handleOpenAddModal()}>
+              <Sort />
+            </IconButton>
             <IconButton onClick={() => handleOpenAddModal()}>
               <Add />
             </IconButton>

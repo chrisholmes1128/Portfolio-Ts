@@ -17,7 +17,6 @@ function initializeTabIcon() {
   };
 
   const setLightMode = () => {
-    console.log("light mode");
     if (lightIcon && darkIcon) {
       darkIcon.remove();
       document.head.append(lightIcon);

@@ -21,7 +21,8 @@ interface IModalProps {
   readOnly?: boolean;
   isEditing?: boolean;
   inputs?: JobItem;
-  onComplete: () => void;
+  onClose: () => void;
+  onSubmit?: (action: string, status: string) => void;
 }
 
 const actionButtons = {
@@ -48,7 +49,8 @@ function ExperienceFormModal({
   readOnly = true,
   isEditing = false,
   inputs = initialValues,
-  onComplete,
+  onClose,
+  onSubmit = () => {},
 }: IModalProps) {
   const [values, setValues] = useState<JobItem>(inputs);
 
@@ -59,7 +61,7 @@ function ExperienceFormModal({
 
   const handleSubmit = async () => {
     const { id, name, startDate, endDate, info } = values;
-    console.log(id);
+
     if (isEditing) {
       // update
       try {
@@ -81,8 +83,9 @@ function ExperienceFormModal({
           ],
           awaitRefetchQueries: true,
         });
+        onSubmit("updated", "success");
       } catch (err) {
-        console.log("Error updating company, please contact support.");
+        onSubmit("updated", "error");
       }
     } else {
       // create
@@ -104,18 +107,15 @@ function ExperienceFormModal({
           ],
           awaitRefetchQueries: true,
         });
+        onSubmit("created", "success");
       } catch (err) {
-        console.log("Error creating company, please contact support.");
+        onSubmit("created", "error");
       }
     }
-
-    // add toast
-    onComplete();
   };
 
   const handleChange = (name: string, value: string) => {
     if (name) {
-      console.log(name, value);
       setValues({ ...values, [name]: value });
     }
   };
@@ -151,7 +151,7 @@ function ExperienceFormModal({
         bottom={0}
         sx={actionButtons}
       >
-        <Button sx={{ width: "6rem" }} variant="outlined" onClick={onComplete}>
+        <Button sx={{ width: "6rem" }} variant="outlined" onClick={onClose}>
           {closeBtnText}
         </Button>
         {!readOnly && (

@@ -7,6 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
 import MyResume from "../../../public/Christopher_Holmes_Resume_2023.pdf";
 import MobileButtonMenu from "../../components/MobileButtonMenu";
+import Toast from "../../components/Toast";
+import { useInfoNotification } from "../../utils/notifications";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
   marginLeft: "auto",
@@ -20,6 +22,7 @@ interface IDashboardPageProps {
 
 function MobileDashboardPage({ children, onExit }: IDashboardPageProps) {
   const [title, setTitle] = useState("Experience");
+  const [isFirstPageLoad, setIsFirstPageLoad] = useState(true);
 
   const location = useLocation();
 
@@ -31,8 +34,21 @@ function MobileDashboardPage({ children, onExit }: IDashboardPageProps) {
     }
   }, [location]);
 
+  useEffect(() => {
+    if (isFirstPageLoad) {
+      const intervalId = setInterval(() => {
+        setIsFirstPageLoad(false);
+        useInfoNotification(
+          "Welcome to my interactive Experience list page. Below you can find my previous work experience as well as add your company to list if you'd like!"
+        );
+      }, 50);
+      return () => clearInterval(intervalId);
+    }
+  }, [isFirstPageLoad]);
+
   return (
     <Box display="flex" width="100%">
+      <Toast />
       <Box width="100%">
         <Header title={title}>
           <ResumeButton

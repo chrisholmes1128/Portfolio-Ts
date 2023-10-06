@@ -13,7 +13,6 @@ function Pages() {
   const [showHomePage, setShowHomePage] = useState(true);
   const isMobile = isCurrentDeviceMobile();
   const location = useLocation();
-  console.log(location);
 
   const pathname = location.pathname.split("/")?.[1];
 

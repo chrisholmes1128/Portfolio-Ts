@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
 import MyResume from "../../../public/Christopher_Holmes_Resume_2023.pdf";
 import MobileDashboardPage from "../MobileDashboardPage";
-import SuccessToast from "../../components/SuccessToast";
+import Toast from "../../components/Toast";
+import { useInfoNotification } from "../../utils/notifications";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
   marginLeft: "auto",
@@ -43,6 +44,9 @@ function DashboardPage({ children, isMobile, onExit }: IDashboardPageProps) {
       const intervalId = setInterval(() => {
         setIsOpen(true);
         setIsFirstPageLoad(false);
+        useInfoNotification(
+          "Welcome to my interactive Experience list page. Below you can find my previous work experience as well as add your company to list if you'd like!"
+        );
       }, 50);
       return () => clearInterval(intervalId);
     }
@@ -50,7 +54,7 @@ function DashboardPage({ children, isMobile, onExit }: IDashboardPageProps) {
 
   return (
     <Box display="flex" width="100%">
-      {/* <SuccessToast text="Welcome to the Dashboard!" /> */}
+      <Toast />
       <Box>
         <Sidebar
           open={isOpen}

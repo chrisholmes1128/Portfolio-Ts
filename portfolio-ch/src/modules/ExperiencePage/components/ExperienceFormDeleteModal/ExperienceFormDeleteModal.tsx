@@ -5,7 +5,8 @@ import { useMutation } from "@apollo/client";
 
 interface IConfirmationModalProps {
   companyId: string;
-  onComplete: () => void;
+  onClose: () => void;
+  onSubmit: (action: string, status: string) => void;
 }
 
 const actionButtons = {
@@ -18,7 +19,8 @@ const actionButtons = {
 
 function ExperienceFormDeleteModal({
   companyId,
-  onComplete,
+  onClose,
+  onSubmit,
 }: IConfirmationModalProps) {
   const theme = useTheme();
   const isMobile = isCurrentDeviceMobile();
@@ -26,17 +28,22 @@ function ExperienceFormDeleteModal({
   const [deleteCompany] = useMutation(DELETE_COMPANY);
 
   const handleDeleteItem = async () => {
-    await deleteCompany({
-      variables: {
-        id: companyId,
-      },
-      refetchQueries: [
-        {
-          query: GET_COMPANIES,
+    try {
+      await deleteCompany({
+        variables: {
+          id: companyId,
         },
-      ],
-      awaitRefetchQueries: true,
-    });
+        refetchQueries: [
+          {
+            query: GET_COMPANIES,
+          },
+        ],
+        awaitRefetchQueries: true,
+      });
+      onSubmit("deleted", "success");
+    } catch (err) {
+      onSubmit("deleted", "error");
+    }
   };
 
   const isSubmitDisabled = false;
@@ -64,7 +71,7 @@ function ExperienceFormDeleteModal({
         bottom={0}
         sx={actionButtons}
       >
-        <Button sx={{ width: "6rem" }} variant="outlined" onClick={onComplete}>
+        <Button sx={{ width: "6rem" }} variant="outlined" onClick={onClose}>
           Cancel
         </Button>
         <Button

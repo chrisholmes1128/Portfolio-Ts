@@ -16,7 +16,6 @@ function MobileButtonMenu() {
   };
 
   const handleToggle = () => {
-    console.log("==> ", isOpen);
     setIsOpen(!isOpen);
   };
 
