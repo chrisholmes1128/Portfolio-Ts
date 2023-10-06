@@ -1,5 +1,5 @@
-import { Menu, MenuOpenRounded } from "@mui/icons-material";
-import { Box, Collapse, IconButton, Tooltip, useTheme } from "@mui/material";
+import { Close, Menu } from "@mui/icons-material";
+import { Box, Collapse, IconButton, useTheme } from "@mui/material";
 import SidebarMenuItems from "./SidebarMenuItems";
 import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
 
@@ -38,7 +38,7 @@ export default function Sidebar({ open, width, setOpen }: ISidebar) {
         >
           <Box mr={1} mt={1}>
             <IconButton onClick={setOpen}>
-              {open ? <Menu /> : <MenuOpenRounded />}
+              {open ? <Close /> : <Menu />}
             </IconButton>
           </Box>
         </Box>

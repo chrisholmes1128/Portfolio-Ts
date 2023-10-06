@@ -16,10 +16,11 @@ import { Add, Delete as DeleteIcon, Edit } from "@mui/icons-material";
 import { TransitionGroup } from "react-transition-group";
 import { useGlobalModal } from "../../../../contexts/ModalContext";
 import ExperienceFormModal from "../ExperienceFormModal";
-import { DELETE_COMPANY, GET_COMPANIES } from "../../graphql";
-import { useMutation, useQuery } from "@apollo/client";
+import { GET_COMPANIES } from "../../graphql";
+import { useQuery } from "@apollo/client";
 import LoaderSpinner from "../../../../components/LoaderSpinner";
 import Page from "../../../../components/Page";
+import ExperienceFormDeleteModal from "../ExperienceFormDeleteModal";
 
 interface JobItem {
   id: string;
@@ -34,29 +35,24 @@ function ExperienceList() {
   const theme = useTheme();
 
   const { data, loading } = useQuery(GET_COMPANIES);
-  const [deleteCompany] = useMutation(DELETE_COMPANY);
 
-  const [items, setItems] = useState<JobItem[]>([]);
+  const [companies, setCompanies] = useState<JobItem[]>([]);
 
   useEffect(() => {
     if (data?.getCompanies) {
       console.log(data);
-      setItems(data?.getCompanies);
+      setCompanies(data?.getCompanies);
     }
   }, [data?.getCompanies]);
 
-  const handleRemoveItem = async (id: string) => {
-    await deleteCompany({
-      variables: {
-        id,
-      },
-      refetchQueries: [
-        {
-          query: GET_COMPANIES,
-        },
-      ],
-      awaitRefetchQueries: true,
-    });
+  const handleOpenDeleteModal = (companyId: string) => {
+    setModalOpen(
+      true,
+      <ExperienceFormDeleteModal
+        companyId={companyId}
+        onComplete={() => setModalOpen(false)}
+      />
+    );
   };
 
   const handleOpenAddModal = () => {
@@ -70,26 +66,26 @@ function ExperienceList() {
     );
   };
 
-  const handleOpenUpdateModal = (item: JobItem) => {
+  const handleOpenUpdateModal = (company: JobItem) => {
     setModalOpen(
       true,
       <ExperienceFormModal
         isEditing
         readOnly={false}
-        title="Update Company"
-        inputs={item}
+        title="Update A Company"
+        inputs={company}
         onComplete={() => setModalOpen(false)}
       />
     );
   };
 
-  const handleOpenReadOnlyModal = (item: JobItem) => {
+  const handleOpenReadOnlyModal = (company: JobItem) => {
     setModalOpen(
       true,
       <ExperienceFormModal
         readOnly
-        title={item.name}
-        inputs={item}
+        title={company.name}
+        inputs={company}
         onComplete={() => setModalOpen(false)}
       />
     );
@@ -119,15 +115,19 @@ function ExperienceList() {
           </Box>
           <List>
             <TransitionGroup>
-              {items.map((item: JobItem) => (
-                <Collapse key={item?.name}>
+              {companies.map((company: JobItem) => (
+                <Collapse key={company?.name}>
                   <ListItem
                     secondaryAction={
                       <>
-                        <IconButton onClick={() => handleOpenUpdateModal(item)}>
+                        <IconButton
+                          onClick={() => handleOpenUpdateModal(company)}
+                        >
                           <Edit />
                         </IconButton>
-                        <IconButton onClick={() => handleRemoveItem(item?.id)}>
+                        <IconButton
+                          onClick={() => handleOpenDeleteModal(company?.id)}
+                        >
                           <DeleteIcon />
                         </IconButton>
                       </>
@@ -138,9 +138,9 @@ function ExperienceList() {
                         <Button
                           color="primary"
                           sx={{ textTransform: "none" }}
-                          onClick={() => handleOpenReadOnlyModal(item)}
+                          onClick={() => handleOpenReadOnlyModal(company)}
                         >
-                          <Typography variant="h5">{item?.name}</Typography>
+                          <Typography variant="h5">{company?.name}</Typography>
                         </Button>
                       }
                       secondary={
@@ -150,9 +150,9 @@ function ExperienceList() {
                           variant="body2"
                         >
                           {`${new Date(
-                            item?.startDate
+                            company?.startDate
                           )?.toLocaleDateString()} - ${new Date(
-                            item?.endDate
+                            company?.endDate
                           )?.toLocaleDateString()}`}
                         </Typography>
                       }
