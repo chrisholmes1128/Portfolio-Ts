@@ -111,8 +111,8 @@ function HomePage({ onEnter }: IHomePageProps) {
                   fontSize={18}
                 >
                   Thanks for taking the time to checkout my portfolio! I am a
-                  passionate Full Stack Developer with a focus on front end
-                  design who can also employ backend changes as well. At my
+                  passionate Full Stack Developer with a focus on frontend
+                  design who can also deploy backend changes as well. At my
                   current job, I am exposed to an abundance of different
                   projects which in turn allowed me to gain invaluable
                   experience with the most desirable web solutions.
@@ -136,7 +136,7 @@ function HomePage({ onEnter }: IHomePageProps) {
             >
               <HomePageColumn
                 isMobile={isMobile}
-                title="Front End Technologies"
+                title="Frontend Technologies"
                 items={frontendSkills}
                 info="To provide a modern and reliable application, this web app
                     utilizes React along with TypeScript. In order to keep
@@ -168,7 +168,7 @@ function HomePage({ onEnter }: IHomePageProps) {
               />
               <HomePageColumn
                 isMobile={isMobile}
-                title="Back End Technologies"
+                title="Backend Technologies"
                 items={backendSkills}
                 info="This web application uses Node.js with Express to help
               manage the Apollo Server which in turn allows for data to be

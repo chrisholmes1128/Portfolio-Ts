@@ -4,17 +4,9 @@ import { CREATE_COMPANY, GET_COMPANIES, UPDATE_COMPANY } from "../../graphql";
 import { ExperienceForm } from "..";
 import { useState } from "react";
 import { isCurrentDeviceMobile } from "../../../../utils/isCurrentDeviceMobile";
+import { JobItem } from "../../interfaces";
 
-interface JobItem {
-  id: string;
-  name: string;
-  info: string;
-  startDate: string;
-  isReadOnly: boolean;
-  endDate: string;
-}
-
-interface IModalProps {
+interface IExperienceFormModalProps {
   title: string;
   subTitleText?: string;
   confirmBtnText?: string;
@@ -53,7 +45,7 @@ function ExperienceFormModal({
   inputs = initialValues,
   onClose,
   onSubmit = () => {},
-}: IModalProps) {
+}: IExperienceFormModalProps) {
   const [values, setValues] = useState<JobItem>(inputs);
 
   const [createCompany] = useMutation(CREATE_COMPANY);
@@ -130,7 +122,7 @@ function ExperienceFormModal({
     <Box
       bgcolor={theme.palette.navy.main}
       p={2}
-      height={isMobile ? "30rem" : "20rem"}
+      height={isMobile ? "30rem" : "25rem"}
       overflow="hidden"
       width={isMobile ? "90%" : "35rem"}
     >

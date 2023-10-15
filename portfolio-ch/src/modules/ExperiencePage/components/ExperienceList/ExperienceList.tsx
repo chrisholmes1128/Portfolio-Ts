@@ -11,7 +11,12 @@ import {
   ListItem,
 } from "@mui/material";
 
-import { Add, Delete as DeleteIcon, Edit, Sort } from "@mui/icons-material";
+import {
+  Add as AddIcon,
+  Delete as DeleteIcon,
+  Edit as EditIcon,
+  HelpOutline as HelpOutlineIcon,
+} from "@mui/icons-material";
 
 import { TransitionGroup } from "react-transition-group";
 import { useGlobalModal } from "../../../../contexts/ModalContext";
@@ -20,20 +25,17 @@ import { GET_COMPANIES } from "../../graphql";
 import { useQuery } from "@apollo/client";
 import LoaderSpinner from "../../../../components/LoaderSpinner";
 import Page from "../../../../components/Page";
-import ExperienceFormDeleteModal from "../ExperienceFormDeleteModal";
 import {
   useErrorNotification,
   useSuccessNotification,
 } from "../../../../utils/notifications";
 
-interface JobItem {
-  id: string;
-  name: string;
-  info: string;
-  startDate: string;
-  endDate: string;
-  isReadOnly: boolean;
-}
+import {
+  ExperienceHelpModal,
+  ExperienceReadOnlyModal,
+  ExperienceFormDeleteModal,
+} from "../../components";
+import { JobItem } from "../../interfaces";
 
 function ExperienceList() {
   const { setModalOpen } = useGlobalModal();
@@ -101,12 +103,17 @@ function ExperienceList() {
   const handleOpenReadOnlyModal = (company: JobItem) => {
     setModalOpen(
       true,
-      <ExperienceFormModal
-        readOnly
-        title={company.name}
-        inputs={company}
+      <ExperienceReadOnlyModal
+        company={company}
         onClose={() => setModalOpen(false)}
       />
+    );
+  };
+
+  const handleOpenHelpModal = () => {
+    setModalOpen(
+      true,
+      <ExperienceHelpModal onClose={() => setModalOpen(false)} />
     );
   };
 
@@ -128,8 +135,11 @@ function ExperienceList() {
           borderRadius={2}
         >
           <Box display="flex" justifyContent="end">
+            <IconButton onClick={() => handleOpenHelpModal()}>
+              <HelpOutlineIcon />
+            </IconButton>
             <IconButton onClick={() => handleOpenAddModal()}>
-              <Add />
+              <AddIcon />
             </IconButton>
           </Box>
           <List>
@@ -143,7 +153,7 @@ function ExperienceList() {
                           disabled={company.isReadOnly}
                           onClick={() => handleOpenUpdateModal(company)}
                         >
-                          <Edit />
+                          <EditIcon />
                         </IconButton>
                         <IconButton
                           disabled={company.isReadOnly}

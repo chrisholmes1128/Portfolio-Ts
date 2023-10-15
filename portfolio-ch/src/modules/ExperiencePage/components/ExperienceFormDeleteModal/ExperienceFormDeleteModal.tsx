@@ -3,7 +3,7 @@ import { isCurrentDeviceMobile } from "../../../../utils/isCurrentDeviceMobile";
 import { DELETE_COMPANY, GET_COMPANIES } from "../../graphql";
 import { useMutation } from "@apollo/client";
 
-interface IConfirmationModalProps {
+interface IExperienceFormDeleteModalProps {
   companyId: string;
   onClose: () => void;
   onSubmit: (action: string, status: string) => void;
@@ -21,7 +21,7 @@ function ExperienceFormDeleteModal({
   companyId,
   onClose,
   onSubmit,
-}: IConfirmationModalProps) {
+}: IExperienceFormDeleteModalProps) {
   const theme = useTheme();
   const isMobile = isCurrentDeviceMobile();
 

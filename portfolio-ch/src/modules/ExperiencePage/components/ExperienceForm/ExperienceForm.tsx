@@ -1,13 +1,7 @@
 import { Grid, TextField } from "@mui/material";
 import DateInput from "../../../../components/DateInput";
-
-interface JobItem {
-  id: string;
-  name: string;
-  info: string;
-  startDate: string;
-  endDate: string;
-}
+import TextAreaInput from "../../../../components/TextAreaInput";
+import { JobItem } from "../../interfaces";
 
 interface IExperienceFormProps {
   inputs: JobItem;
@@ -21,7 +15,7 @@ function ExperienceForm({ readOnly, inputs, onChange }: IExperienceFormProps) {
   };
 
   return (
-    <Grid container spacing={2} mt={2}>
+    <Grid container spacing={2} mt={2} mb={2}>
       <Grid item={true} xs={12}>
         <TextField
           disabled={readOnly}
@@ -48,6 +42,16 @@ function ExperienceForm({ readOnly, inputs, onChange }: IExperienceFormProps) {
           label="End Date"
           onChange={handleChange}
           value={new Date(inputs.endDate) || null}
+        />
+      </Grid>
+      <Grid item={true} xs={12}>
+        <TextAreaInput
+          disabled={readOnly}
+          value={inputs.info}
+          onChange={handleChange}
+          rows={3}
+          name="info"
+          label="Responsibilities for the job can be listed here"
         />
       </Grid>
     </Grid>

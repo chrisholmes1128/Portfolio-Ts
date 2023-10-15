@@ -70,7 +70,7 @@ export default function SidebarMenuItems({
       <Box sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}>
         <Box display="flex" justifyContent="center">
           <Typography color="common.white">
-            Created by Christopher Holmes
+            Developed by Christopher Holmes
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center">
