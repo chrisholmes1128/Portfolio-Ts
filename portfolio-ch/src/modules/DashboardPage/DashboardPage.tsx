@@ -5,7 +5,10 @@ import Header from "../../components/Header";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
 import { useLocation } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
-import { RESUME_PDF } from "../constants";
+import MyResume from "../../../public/Christopher_Holmes_Resume_2023.pdf";
+import MobileDashboardPage from "../MobileDashboardPage";
+import Toast from "../../components/Toast";
+import { useInfoNotification } from "../../utils/notifications";
 
 const ResumeButton = styled(Button)(({ theme }) => ({
   marginLeft: "auto",
@@ -14,23 +17,44 @@ const ResumeButton = styled(Button)(({ theme }) => ({
 
 interface IDashboardPageProps {
   children: React.ReactNode;
+  isMobile: boolean;
+  onExit: () => void;
 }
 
-function DashboardPage({ children }: IDashboardPageProps) {
-  const [isOpen, setIsOpen] = useState(true);
-  const [title, setTitle] = useState("Home");
+function DashboardPage({ children, isMobile, onExit }: IDashboardPageProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFirstPageLoad, setIsFirstPageLoad] = useState(true);
+  const [title, setTitle] = useState("Experience");
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname !== "/") {
       setTitle(capitalizeEveryWord(location.pathname.split("/")[1]));
     } else {
-      setTitle("Home");
+      onExit();
     }
   }, [location]);
 
+  if (isMobile) {
+    return <MobileDashboardPage children={children} onExit={onExit} />;
+  }
+
+  useEffect(() => {
+    if (isFirstPageLoad) {
+      const intervalId = setInterval(() => {
+        setIsOpen(true);
+        setIsFirstPageLoad(false);
+        useInfoNotification(
+          "Welcome to my interactive Experience list page. Below you can find my previous work experience as well as add your company to list if you'd like!"
+        );
+      }, 50);
+      return () => clearInterval(intervalId);
+    }
+  }, [isFirstPageLoad]);
+
   return (
     <Box display="flex" width="100%">
+      <Toast />
       <Box>
         <Sidebar
           open={isOpen}
@@ -42,7 +66,7 @@ function DashboardPage({ children }: IDashboardPageProps) {
         <Header title={title}>
           <ResumeButton
             variant="outlined"
-            onClick={() => downloadFile(RESUME_PDF)}
+            onClick={() => downloadFile(MyResume)}
           >
             Resume
           </ResumeButton>

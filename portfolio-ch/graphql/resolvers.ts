@@ -6,7 +6,7 @@ const resolvers = {
       return await Company.findById(ID);
     },
     async getCompanies(_: any, { amount }: any) {
-      return await Company.find().sort({ createdAt: -1 }).limit(amount);
+      return await Company.find().sort({ startDate: "desc" }).limit(amount);
     },
   },
   Mutation: {
@@ -18,6 +18,7 @@ const resolvers = {
         info: args.companyInput.info,
         createdAt: new Date().toISOString(),
         updatedAt: args.companyInput.updatedAt,
+        isReadOnly: false,
       });
 
       const res = await newCompany.save();
@@ -28,6 +29,7 @@ const resolvers = {
         startDate: res.startDate,
         endDate: res.endDate,
         info: res.info,
+        isReadOnly: res.isReadOnly,
       };
     },
     async deleteCompany(_: any, { ID }: any) {
@@ -37,32 +39,24 @@ const resolvers = {
     },
     async updateCompany(
       _: any,
-      { ID, companyInput: { name, startDate, endDate, info } }: any
+      { ID, companyInput: { name, startDate, endDate, info, isReadOnly } }: any
     ) {
       const isUpdated = (
         await Company.updateOne(
           { _id: ID },
-          { name: name, startDate: startDate, endDate: endDate, info: info }
+          {
+            name: name,
+            startDate: startDate,
+            endDate: endDate,
+            info: info,
+            isReadOnly: isReadOnly,
+          }
         )
       ).modifiedCount;
       // 1 = updated, 0 = not updated
       return isUpdated;
     },
   },
-
-  // async updateCompany(
-  //   _: any,
-  //   { ID, companyInput: { name, startDate, endDate, info } }: any
-  // ) {
-  //   const isUpdated = (
-  //     await Company.updateOne(
-  //       { id: ID },
-  //       { name: name, startDate: startDate, endDate: endDate, info: info }
-  //     )
-  //   ).modifiedCount;
-  //   // 1 = updated, 0 = not updated
-  //   return isUpdated;
-  // },
 };
 
 export default resolvers;

@@ -1,6 +1,7 @@
-import { Menu, MenuOpenRounded } from "@mui/icons-material";
+import { Close, Menu } from "@mui/icons-material";
 import { Box, Collapse, IconButton, useTheme } from "@mui/material";
 import SidebarMenuItems from "./SidebarMenuItems";
+import { isCurrentDeviceMobile } from "../../utils/isCurrentDeviceMobile";
 
 interface ISidebar {
   open: boolean;
@@ -10,6 +11,8 @@ interface ISidebar {
 
 export default function Sidebar({ open, width, setOpen }: ISidebar) {
   const theme = useTheme();
+
+  const isMobile = isCurrentDeviceMobile();
 
   return (
     <Collapse
@@ -23,8 +26,8 @@ export default function Sidebar({ open, width, setOpen }: ISidebar) {
         width={width}
         bgcolor={theme.palette.navy.dark}
         sx={{
-          borderTopRightRadius: "0.5rem",
-          borderBottomRightRadius: "0.5rem",
+          borderTopRightRadius: !isMobile ? "0.5rem" : "",
+          borderBottomRightRadius: !isMobile ? "0.5rem" : "",
         }}
       >
         <Box
@@ -35,11 +38,16 @@ export default function Sidebar({ open, width, setOpen }: ISidebar) {
         >
           <Box mr={1} mt={1}>
             <IconButton onClick={setOpen}>
-              {open ? <Menu /> : <MenuOpenRounded />}
+              {open ? <Close /> : <Menu />}
             </IconButton>
           </Box>
         </Box>
-        <SidebarMenuItems open={open} />
+        <SidebarMenuItems
+          open={open}
+          width={width}
+          setOpen={setOpen}
+          isMobile={isMobile}
+        />
       </Box>
     </Collapse>
   );

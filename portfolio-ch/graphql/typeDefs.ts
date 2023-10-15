@@ -1,5 +1,5 @@
 import { gql } from "apollo-server";
-import { ObjectId } from "mongoose";
+
 const typeDefs = gql`
   type Company {
     id: String!
@@ -7,6 +7,7 @@ const typeDefs = gql`
     startDate: String!
     endDate: String!
     info: String
+    isReadOnly: Boolean
     updatedAt: String
   }
 
@@ -16,6 +17,7 @@ const typeDefs = gql`
     endDate: String
     info: String
     updatedAt: String
+    isReadOnly: Boolean
   }
 
   type Query {

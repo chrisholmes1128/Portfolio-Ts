@@ -45,7 +45,11 @@ function GlobalModalConsumer() {
   };
 
   return (
-    <Dialog open={isModalOpen} onClose={handleClose}>
+    <Dialog
+      open={isModalOpen}
+      onClose={handleClose}
+      sx={{ overflow: "hidden" }}
+    >
       {modalContent}
     </Dialog>
   );
