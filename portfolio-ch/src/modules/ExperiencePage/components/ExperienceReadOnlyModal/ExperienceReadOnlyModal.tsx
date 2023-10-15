@@ -38,11 +38,20 @@ function ExperienceReadOnlyModal({
         <Typography variant="h3" color={theme.palette.primary.main}>
           {company.name}
         </Typography>
-        <Typography variant="h5" color={theme.palette.common.white}>
+        {!isMobile && (
+          <Typography variant="h5" color={theme.palette.common.white}>
+            {new Date(company.startDate).toLocaleDateString()} -{" "}
+            {new Date(company.endDate).toLocaleDateString()}
+          </Typography>
+        )}
+      </Box>
+      {isMobile && (
+        <Typography variant="body1" color={theme.palette.common.white}>
           {new Date(company.startDate).toLocaleDateString()} -{" "}
           {new Date(company.endDate).toLocaleDateString()}
         </Typography>
-      </Box>
+      )}
+
       <Box height={"33rem"} sx={{ overflowY: "auto" }} mt={2}>
         <Typography variant="h5" color={theme.palette.common.white}>
           Responsibilities:
