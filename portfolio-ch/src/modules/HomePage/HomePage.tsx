@@ -104,7 +104,7 @@ function HomePage({ onEnter }: IHomePageProps) {
             </Box>
 
             <Box display="flex" justifyContent="center" width="100%">
-              <Box mt={2} width="70%">
+              <Box mt={2} width={isMobile ? "90%" : "70%"}>
                 <Typography
                   textAlign="center"
                   color="common.white"
@@ -137,7 +137,7 @@ function HomePage({ onEnter }: IHomePageProps) {
               <HomePageColumn
                 isMobile={isMobile}
                 title="Front End Technologies"
-                items={frontendSkills} // move text to constants file !!!
+                items={frontendSkills}
                 info="To provide a modern and reliable application, this web app
                     utilizes React along with TypeScript. In order to keep
                     client side code clean and bug free, reusable components
@@ -172,9 +172,7 @@ function HomePage({ onEnter }: IHomePageProps) {
                 items={backendSkills}
                 info="This web application uses Node.js with Express to help
               manage the Apollo Server which in turn allows for data to be
-              created, read, updated, or deleted from MongoDB. Note: the requests may seem slow at first
-              due to the initial spin up speed of free tier offered by Render 
-              which hosts my custom API."
+              created, read, updated, or deleted from MongoDB."
               />
             </Grid>
           </Box>

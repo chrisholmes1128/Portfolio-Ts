@@ -9,6 +9,7 @@ export const GET_COMPANIES = gql`
       startDate
       endDate
       updatedAt
+      isReadOnly
     }
   }
 `;

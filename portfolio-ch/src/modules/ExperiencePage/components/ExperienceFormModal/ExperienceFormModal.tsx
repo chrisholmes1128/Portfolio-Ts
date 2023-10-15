@@ -10,6 +10,7 @@ interface JobItem {
   name: string;
   info: string;
   startDate: string;
+  isReadOnly: boolean;
   endDate: string;
 }
 
@@ -36,9 +37,10 @@ const actionButtons = {
 const initialValues = {
   id: "",
   name: "",
-  startDate: "",
-  endDate: "",
+  startDate: new Date().toLocaleDateString(),
+  endDate: new Date().toLocaleDateString(),
   info: "",
+  isReadOnly: false,
 };
 
 function ExperienceFormModal({
@@ -98,6 +100,7 @@ function ExperienceFormModal({
               endDate,
               info,
               updatedAt: new Date().toISOString(),
+              isReadOnly: false,
             },
           },
           refetchQueries: [

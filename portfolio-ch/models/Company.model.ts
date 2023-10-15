@@ -5,6 +5,7 @@ const companySchema = new Schema({
   startDate: String,
   endDate: String,
   info: String,
+  isReadOnly: Boolean,
   updatedAt: String,
 });
 

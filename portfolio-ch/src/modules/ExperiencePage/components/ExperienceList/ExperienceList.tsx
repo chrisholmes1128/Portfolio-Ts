@@ -32,6 +32,7 @@ interface JobItem {
   info: string;
   startDate: string;
   endDate: string;
+  isReadOnly: boolean;
 }
 
 function ExperienceList() {
@@ -128,9 +129,6 @@ function ExperienceList() {
         >
           <Box display="flex" justifyContent="end">
             <IconButton onClick={() => handleOpenAddModal()}>
-              <Sort />
-            </IconButton>
-            <IconButton onClick={() => handleOpenAddModal()}>
               <Add />
             </IconButton>
           </Box>
@@ -142,11 +140,13 @@ function ExperienceList() {
                     secondaryAction={
                       <>
                         <IconButton
+                          disabled={company.isReadOnly}
                           onClick={() => handleOpenUpdateModal(company)}
                         >
                           <Edit />
                         </IconButton>
                         <IconButton
+                          disabled={company.isReadOnly}
                           onClick={() => handleOpenDeleteModal(company?.id)}
                         >
                           <DeleteIcon />
@@ -172,9 +172,11 @@ function ExperienceList() {
                         >
                           {`${new Date(
                             company?.startDate
-                          )?.toLocaleDateString()} - ${new Date(
-                            company?.endDate
-                          )?.toLocaleDateString()}`}
+                          )?.toLocaleDateString()} - ${
+                            company.name === "GraVoc"
+                              ? "Current"
+                              : new Date(company?.endDate)?.toLocaleDateString()
+                          }`}
                         </Typography>
                       }
                     />
