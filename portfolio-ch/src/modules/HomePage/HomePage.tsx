@@ -15,7 +15,7 @@ function HomePage({ onEnter }: IHomePageProps) {
   const theme = useTheme();
   const isMobile = isCurrentDeviceMobile();
   const fontSize = isMobile ? 50 : 80;
-  const marginTop = isMobile ? 3.5 : 22;
+  const marginTop = isMobile ? 3.5 : 10;
   const alignment = isMobile ? "start" : "center";
   const gridTemplateColumns = isMobile ? "1fr" : "1fr 1fr 1fr";
 
@@ -32,7 +32,7 @@ function HomePage({ onEnter }: IHomePageProps) {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Parallax pages={isMobile ? 3.3 : 2} ref={ref}>
+      <Parallax pages={isMobile ? 3.3 : 2.3} ref={ref}>
         <ParallaxLayer speed={2} style={{ zIndex: 15 }}>
           <Box display="flex" justifyContent={alignment} mt={marginTop} ml={2}>
             <Grow in={true} {...{ timeout: 1000 }}>
@@ -102,7 +102,6 @@ function HomePage({ onEnter }: IHomePageProps) {
                 Full Stack Developer
               </Typography>
             </Box>
-
             <Box display="flex" justifyContent="center" width="100%">
               <Box mt={2} width={isMobile ? "90%" : "70%"}>
                 <Typography
@@ -123,7 +122,7 @@ function HomePage({ onEnter }: IHomePageProps) {
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0.5}>
           <Box bgcolor={theme.palette.navy.dark} p={1}>
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" mt={2}>
               <Typography textAlign="center" color="primary" fontSize={40}>
                 Portfolio Application Stack
               </Typography>
