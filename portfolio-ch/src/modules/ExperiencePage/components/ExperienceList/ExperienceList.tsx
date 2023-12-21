@@ -117,6 +117,13 @@ function ExperienceList() {
     );
   };
 
+  const formatDate = (date: string) => {
+    const mmddyyyy = new Date(date)?.toLocaleDateString();
+    const splitDate = mmddyyyy.split("/");
+    const mmyyyy = `${splitDate?.[0]}/${splitDate?.[2]}`;
+    return mmyyyy;
+  };
+
   if (loading) {
     return (
       <Page>
@@ -180,12 +187,10 @@ function ExperienceList() {
                           color={theme.palette.grey[500]}
                           variant="body2"
                         >
-                          {`${new Date(
-                            company?.startDate
-                          )?.toLocaleDateString()} - ${
+                          {`${formatDate(company?.startDate)} - ${
                             company.name === "GraVoc"
                               ? "Current"
-                              : new Date(company?.endDate)?.toLocaleDateString()
+                              : formatDate(company?.endDate)
                           }`}
                         </Typography>
                       }

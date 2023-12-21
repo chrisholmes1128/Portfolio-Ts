@@ -42,7 +42,7 @@ export default function SidebarMenuItems({
       <Box
         sx={{ marginLeft: !open ? "-0.6rem" : "0px" }}
         marginTop={-2}
-        height="82%"
+        height="70%"
         width={open ? width : "4.5rem"}
       >
         <List>
