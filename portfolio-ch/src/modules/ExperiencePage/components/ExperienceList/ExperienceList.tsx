@@ -36,6 +36,7 @@ import {
   ExperienceFormDeleteModal,
 } from "../../components";
 import { JobItem } from "../../interfaces";
+import { formatDateMonthAndYear } from "../../../../utils/formatDateMonthAndYear";
 
 function ExperienceList() {
   const { setModalOpen } = useGlobalModal();
@@ -187,10 +188,10 @@ function ExperienceList() {
                           color={theme.palette.grey[500]}
                           variant="body2"
                         >
-                          {`${formatDate(company?.startDate)} - ${
+                          {`${formatDateMonthAndYear(company?.startDate)} - ${
                             company.name === "GraVoc"
                               ? "Current"
-                              : formatDate(company?.endDate)
+                              : formatDateMonthAndYear(company?.endDate)
                           }`}
                         </Typography>
                       }

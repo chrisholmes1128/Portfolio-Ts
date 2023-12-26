@@ -2,6 +2,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { isCurrentDeviceMobile } from "../../../../utils/isCurrentDeviceMobile";
 import { Circle as CircleIcon } from "@mui/icons-material";
 import { JobItem } from "../../interfaces";
+import { formatDateMonthAndYear } from "../../../../utils/formatDateMonthAndYear";
 
 interface IExperienceReadOnlyModalProps {
   company: JobItem;
@@ -40,15 +41,19 @@ function ExperienceReadOnlyModal({
         </Typography>
         {!isMobile && (
           <Typography variant="h5" color={theme.palette.common.white}>
-            {new Date(company.startDate).toLocaleDateString()} -{" "}
-            {new Date(company.endDate).toLocaleDateString()}
+            {formatDateMonthAndYear(company.startDate)} -{" "}
+            {company.name === "GraVoc"
+              ? "Current"
+              : formatDateMonthAndYear(company?.endDate)}
           </Typography>
         )}
       </Box>
       {isMobile && (
         <Typography variant="body1" color={theme.palette.common.white}>
-          {new Date(company.startDate).toLocaleDateString()} -{" "}
-          {new Date(company.endDate).toLocaleDateString()}
+          {formatDateMonthAndYear(company.startDate)} -{" "}
+          {company.name === "GraVoc"
+            ? "Current"
+            : formatDateMonthAndYear(company?.endDate)}
         </Typography>
       )}
 
