@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 import capitalizeEveryWord from "../../utils/capitalizeEveryWord";
 import { useLocation } from "react-router-dom";
 import downloadFile from "../../utils/downloadFile";
-import MyResume from "../../../public/Christopher_Holmes_Resume_2023.pdf";
+import MyResume from "../../../public/Christopher_Holmes_Resume_2024.pdf";
 import MobileDashboardPage from "../MobileDashboardPage";
 import Toast from "../../components/Toast";
 import { useInfoNotification } from "../../utils/notifications";

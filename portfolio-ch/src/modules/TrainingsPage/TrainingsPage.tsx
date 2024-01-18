@@ -53,7 +53,7 @@ function TrainingsPage() {
         }
         width={isMobile ? "20rem" : "50rem"}
         steps={[
-          "AWS Cloud Practioner",
+          "AWS Cloud Practioner Essentials",
           "PluralSight TypeScript",
           "PluralSight SQL",
         ]}
